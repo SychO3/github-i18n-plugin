@@ -351,6 +351,7 @@
     "upload files": "上传文件",
     "delete directory": "删除文件夹",
     "readme": "自述文件",
+    "activity": "活动",
     "commits": "提交",
     "merge pull request": "合并拉取请求",
     "switch branches/tags": "切换分支/标签",
