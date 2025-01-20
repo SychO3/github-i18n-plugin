@@ -398,6 +398,7 @@
     "committed to this repository in the past week": "过去一周致力于此仓库",
 
     "contribute": "贡献",
+    "sync fork": "同步复刻",
     "open a pull request to contribute your changes upstream.": "打开拉取请求以向上游贡献您的更改。",
     "open pull request": "打开拉取请求",
     "fetch upstream": "获取上游",
