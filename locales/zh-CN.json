@@ -1878,6 +1878,21 @@
     "solutions": "解决方案",
     "open source": "开源项目",
 
+    "no labels": "无标签",
+    "no type": "无类型",
+    "no projects": "无项目",
+    "no milestone": "无里程碑",
+    "relationships": "关系",
+    "none yet": "暂无",
+    "development": "开发",
+    "no branches or pull requests": "无分支或拉取请求",
+    "you're receiving notifications because you're subscribed to this thread.": "您正在接收通知，因为您订阅了此主题。",
+    "add a comment": "添加评论",
+    "clone using the web url.": "使用 web URL 克隆。",
+    "your workspaces in the cloud": "您的云工作空间",
+    "no codespaces": "无代码空间",
+    "you don't have any codespaces with this repository checked out": "您没有任何代码空间签出此仓库",
+
     "__dict-end": "end"
   }
 }
