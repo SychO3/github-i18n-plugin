@@ -1490,6 +1490,7 @@
     "preview": "预览",
     "leave a comment": "发表评论",
     "nothing to preview": "没有什么可预览",
+    
 
     "insert a suggestion <ctrl+g>": "插入建议 <ctrl+g>",
     "applying suggestions on deleted lines is not supported.": "不支持对删除的行应用建议。",
@@ -1961,6 +1962,18 @@
     "enable vulnerability reporting": "启用漏洞报告",
     "view alerts": "查看警报",
     "enable in settings": "在设置中启用",
+    "your name may appear around gitHub where you contribute or are mentioned. you can remove it at any time.": "您的名字可能会出现在 GitHub 的各个地方，当您贡献或被提及时。您可以随时删除它。",
+    "jobs profile": "作业配置文件",
+    "you have set your email address to private. to toggle email privacy,go to" :"您已将电子邮件地址设置为私有。要切换电子邮件隐私，请转到",
+    "and uncheck 'keep my email address private.'": "并取消选中“保持我的电子邮件地址私有”。",
+    "you can @mention other users and organizations to link to them.": "您可以 @提及其他用户和组织来链接它们。",
+    "display current local time": "显示当前本地时间",
+    "pronouns": "代词",
+    "social accounts": "社交账户",
+    "you can @mention your company’s gitHub organization to link it.": "您可以 @提及您的公司 GitHub 组织来链接它。",
+    "other users will see the time difference from their local time." : "其他用户将看到他们本地时间的时间差。",
+    "orcid provides a persistent identifier - an orcid id - that distinguishes you from other researchers. lear  more at": "ORCID 提供了一个持久的标识符 - ORCID iD - 来区分您与其他研究人员。了解更多请访问",
+    "make profile private and hide activity": "将个人资料设为私有并隐藏活动",
 
     "__dict-end": "end",
     "this branch is not ahead of the upstream": "当前分支与上游分支保持一致",
