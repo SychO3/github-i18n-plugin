@@ -1976,6 +1976,6 @@
     "this branch is not ahead of the upstream": "当前分支与上游分支保持一致",
     "this branch is out-of-date": "当前分支落后于目标分支",
     "update branch to keep this branch up-to-date by syncing" : "更新分支以通过同步保持此分支最新",
-    "from the upstream repository." : "从上游仓库。",
+    "from the upstream repository." : "从上游仓库。"
   }
 }
