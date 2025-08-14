@@ -222,11 +222,14 @@
     "follows": "关注",
     "who people are following": "别人新关注的开发者",
     "recommendations": "推荐",
-    "Repositories and people you may like": "您可能喜欢的仓库和开发者",
+    "trending repositories": "仓库趋势",
+    "repositories and people you may like": "您可能喜欢的仓库和开发者",
     "issues and pull requests from repositories": "仓库的议题和拉取请求",
     "include events from starred repositories": "包括标星仓库的动态",
     "by default, the feed shows events from repositories you sponsor or watch, and people you follow.": "默认情况下，信息流会显示您赞助或关注的仓库，以及您关注的人的动态。",
     "reset to default": "重置为默认",
+    "your enterprises": "我的企业",
+    "your sponsors": "我的赞助",
     "feed item options": "信息流选项",
     "join discussion" : "加入讨论",
     "show less activity like this": "显示更少类似的动态",
@@ -1913,7 +1916,18 @@
     "your workspaces in the cloud": "您的云工作空间",
     "no codespaces": "无代码空间",
     "you don't have any codespaces with this repository checked out": "您没有任何代码空间签出此仓库",
+    "learn more about syncing a fork": "了解有关同步复刻的更多信息",
+    "update branch": "更新分支",
+    "contributing": "贡献",
+    "cite this repository": "引用此仓库",
+    "mit license": "MIT 许可证",
+    "use your hitHub pages website": "使用您的 GitHub Pages 网站",
+    "deployments": "部署",
 
-    "__dict-end": "end"
+    "__dict-end": "end",
+    "this branch is not ahead of the upstream": "当前分支与上游分支保持一致",
+    "this branch is out-of-date": "当前分支落后于目标分支",
+    "update branch to keep this branch up-to-date by syncing " : "更新分支以通过同步保持此分支最新",
+    " from the upstream repository." : " 从上游仓库。"
   }
 }
