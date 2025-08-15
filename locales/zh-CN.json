@@ -1,11 +1,13 @@
 {
   "routes": [
-    { "type": "prefix", "pattern": "https://github.com/", "key": "dashboard" },
+    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/issues(?:/.*)?(?:[?#].*)?$", "key": "repo_issues" },
+    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/projects(?:/.*)?(?:[?#].*)?$", "key": "repo_projects" },
+    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+(?:/)?(?:[?#].*)?$", "key": "repo" },
     { "type": "regex", "pattern": "^https://github.com/dashboard(?:/.*)?$", "key": "dashboard" },
     { "type": "regex", "pattern": "^https://github.com/issues(?:/.*)?$", "key": "issues_global" },
     { "type": "regex", "pattern": "^https://github.com/pulls(?:/.*)?$", "key": "pulls_global" },
-    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+", "key": "repo" },
-    { "type": "prefix", "pattern": "https://github.com/settings/profile", "key": "settings_profile" }
+    { "type": "prefix", "pattern": "https://github.com/settings/profile", "key": "settings_profile" },
+    { "type": "regex", "pattern": "^https://github.com(?:/)?(?:[?#].*)?$", "key": "dashboard" }
   ],
   "global": {
     "Terms": "条款",
