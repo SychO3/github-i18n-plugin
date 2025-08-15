@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub 中文翻译增强
 // @namespace    https://github.com/SychO3/github-i18n-plugin
-// @version      1.0.7
+// @version      1.0.8
 // @description  将 GitHub 页面翻译为中文。采用字典驱动，按页面细分，不改变页面功能；自动处理 PJAX/动态内容。
 // @author       SychO
 // @match        https://github.com/*
@@ -168,6 +168,105 @@
         return rules;
     }
 
+    function buildTemplatesForPage(pageKey) {
+        // 模板对象：{ normalizedKey: { html: string, anchors?: string[] } }
+        const templates = Object.create(null);
+        const add = (obj) => {
+            if (obj && typeof obj === 'object' && !Array.isArray(obj)) {
+                for (const [k, v] of Object.entries(obj)) {
+                    if (typeof k !== 'string') continue;
+                    const nk = normalizeKey(k);
+                    if (typeof v === 'string') {
+                        templates[nk] = { html: v };
+                    } else if (v && typeof v === 'object') {
+                        const html = typeof v.html === 'string' ? v.html : null;
+                        const anchors = Array.isArray(v.anchors) ? v.anchors
+                            : (Array.isArray(v.anchorTexts) ? v.anchorTexts : null);
+                        if (html) templates[nk] = anchors ? { html, anchors } : { html };
+                    }
+                }
+            }
+        };
+        add(loadedDictionaries.templates);
+        const pageDict = loadedDictionaries[pageKey] || {};
+        add(pageDict.templates);
+        return templates;
+    }
+
+    function buildAnchorTemplateKey(parent) {
+        const tokens = [];
+        const anchors = [];
+        parent.childNodes.forEach((node) => {
+            if (node.nodeType === Node.TEXT_NODE) {
+                tokens.push(node.nodeValue || '');
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                const el = node;
+                if (el.tagName === 'A') {
+                    const idx = anchors.length;
+                    anchors.push(el);
+                    tokens.push(`[A${idx}]`);
+                } else if (el.tagName === 'KBD') {
+                    // 将 <kbd>x</kbd> 看作其文本
+                    tokens.push(el.textContent || '');
+                } else {
+                    // 其他标签中止模板尝试
+                    anchors.length = 0;
+                    tokens.length = 0;
+                }
+            }
+        });
+        if (tokens.length === 0 && anchors.length === 0) return null;
+        return { key: normalizeKey(tokens.join(' ')), anchors };
+    }
+
+    function translateTextByDictAndPatterns(text, dict, patternRules) {
+        if (!text) return null;
+        const key = normalizeKey(text);
+        if (key) {
+            const byDict = dict[key];
+            if (byDict) return byDict;
+        }
+        if (patternRules && patternRules.length) {
+            const byPat = translateByPatterns(text, patternRules);
+            if (typeof byPat === 'string' && byPat !== text) return byPat;
+        }
+        return null;
+    }
+
+    function applyAnchorTemplate(parent, templates, dict, patternRules) {
+        if (!parent || !templates) return 0;
+        const built = buildAnchorTemplateKey(parent);
+        if (!built) return 0;
+        const tpl = templates[built.key];
+        if (!tpl || !tpl.html) return 0;
+        let html = tpl.html;
+        built.anchors.forEach((a, idx) => {
+            const marker = new RegExp(escapeRegExp(`[A${idx}]`), 'g');
+            let aHtml = a.outerHTML;
+            const override = tpl.anchors && typeof tpl.anchors[idx] === 'string' ? tpl.anchors[idx] : null;
+            if (override) {
+                const clone = a.cloneNode(true);
+                clone.textContent = override;
+                aHtml = clone.outerHTML;
+            } else {
+                // 尝试依据词典/模式翻译链接文本
+                const translated = translateTextByDictAndPatterns(a.textContent || '', dict, patternRules);
+                if (translated && translated !== (a.textContent || '')) {
+                    const clone = a.cloneNode(true);
+                    clone.textContent = translated;
+                    aHtml = clone.outerHTML;
+                }
+            }
+            html = html.replace(marker, aHtml);
+        });
+        if (parent.innerHTML !== html) {
+            parent.innerHTML = html;
+            processedElementSet.add(parent);
+            return 1;
+        }
+        return 0;
+    }
+
     function translateByPatterns(text, patternRules) {
         if (!Array.isArray(patternRules) || !patternRules.length) return null;
         for (const { re, replace } of patternRules) {
@@ -240,20 +339,31 @@
 
     let processedElementSet = new WeakSet();
 
-    function tryTranslateByParentElement(textNode, dict, patternRules) {
+    function tryTranslateByParentElement(textNode, dict, patternRules, templates) {
         const parent = textNode && textNode.parentElement;
         if (!parent || processedElementSet.has(parent)) return 0;
         if (parent.closest(SKIP_CONTAINER_SELECTOR)) return 0;
-        // 仅当父元素的子元素均为安全的内联标签（如 <kbd>）时，才允许整体替换。
+        // 情况 A：仅含 <kbd>
         const allowedInlineTags = new Set(['KBD']);
         const children = parent.children;
+        let onlyKbd = true;
+        let onlyAnchorOrKbd = true;
         if (children && children.length > 0) {
             for (let i = 0; i < children.length; i++) {
                 const tag = children[i].tagName;
-                if (!allowedInlineTags.has(tag)) {
-                    return 0; // 例如包含 <svg>、<span> 图标等复杂结构时，放弃整体替换
-                }
+                if (!allowedInlineTags.has(tag)) onlyKbd = false;
+                if (!(tag === 'A' || tag === 'KBD')) onlyAnchorOrKbd = false;
             }
+        }
+        if (!onlyKbd && onlyAnchorOrKbd) {
+            // 情况 B：仅含 <a>/<kbd>，尝试模板替换以保留链接
+            const changed = applyAnchorTemplate(parent, templates, dict, patternRules);
+            if (changed) return changed;
+            // 未命中模板则不整体替换
+            return 0;
+        } else if (!onlyKbd && !onlyAnchorOrKbd && children && children.length > 0) {
+            // 复杂结构：放弃整体替换
+            return 0;
         }
         const fullText = parent.textContent || '';
         const norm = normalizeKey(fullText);
@@ -316,7 +426,7 @@
         }
         for (const textNode of toProcess) {
             // 先尝试以父元素整体文本进行替换（支持跨内联标签的整体翻译）
-            replacedCount += tryTranslateByParentElement(textNode, dict, currentPatternRules);
+            replacedCount += tryTranslateByParentElement(textNode, dict, currentPatternRules, currentTemplates);
             if (isSkippable(textNode)) continue;
             replacedCount += translateTextNode(textNode, dict, currentPatternRules);
         }
@@ -380,6 +490,7 @@
     let currentDict = null;
     let scheduled = false;
     let currentPatternRules = [];
+    let currentTemplates = Object.create(null);
 
     function applyTranslation(reason) {
         try {
@@ -390,6 +501,7 @@
                 currentPageKey = pageKey;
                 currentDict = buildDictionaryForPage(pageKey);
                 currentPatternRules = buildPatternRulesForPage(pageKey);
+                currentTemplates = buildTemplatesForPage(pageKey);
             }
             translateInTree(document.body, currentDict);
             translateAttributesInRoot(document, currentDict);

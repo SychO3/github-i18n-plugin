@@ -66,6 +66,12 @@
     "Recently updated": "最近更新",
     "Least recently updated": "更新最早"
   },
+  "templates": {
+    "you could search [a0] or try an [a1].": {
+      "html": "你可以在 [A0] 中搜索或尝试 [A1]。",
+      "anchors": ["整个 GitHub", "高级搜索"]
+    }
+  },
   "dashboard": {
     "Dashboard": "仪表盘",
     "Top repositories": "热门仓库",
