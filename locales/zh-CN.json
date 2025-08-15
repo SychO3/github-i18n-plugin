@@ -1,7 +1,8 @@
 {
   "routes": [
     { "type": "regex", "pattern": "^https://github.com/dashboard(?:/.*)?$", "key": "dashboard" },
-    { "type": "prefix", "pattern": "https://github.com/", "key": "home" },
+    { "type": "regex", "pattern": "^https://github.com/issues(?:/.*)?$", "key": "issues_global" },
+    { "type": "prefix", "pattern": "https://github.com/", "key": "dashboard" },
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+$", "key": "repo_home" },
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/discussions(?:/.*)?$", "key": "repo_discussions" },
     { "type": "prefix", "pattern": "https://github.com/settings/profile", "key": "settings_profile" }
@@ -12,6 +13,7 @@
     "search": "搜索",
     "code": "代码",
     "issues": "问题",
+    "issue": "问题",
     "pull requests": "拉取请求",
     "actions": "Actions",
     "projects": "项目",
@@ -53,12 +55,6 @@
     "download zip": "下载 ZIP",
     "create new file": "新建文件",
     "upload files": "上传文件"
-  },
-  "home": {
-    "build and ship software on a single, collaborative platform": "在一个协作平台上构建与交付软件",
-    "sign in": "登录",
-    "sign up": "注册",
-    "search": "搜索"
   },
   "dashboard": {
     "Dashboard": "仪表盘",
@@ -121,6 +117,20 @@
     "label": "标签",
     "milestone": "里程碑",
     "projects": "项目"
+  },
+  "issues_global": {
+    "assigned": "已指派",
+    "created": "已创建",
+    "mentioned": "被提及",
+    "review requests": "评审请求",
+    "closed": "已关闭",
+    "open": "打开",
+    "sort": "排序",
+    "filters": "筛选",
+    "author": "作者",
+    "assignee": "负责人",
+    "label": "标签",
+    "milestone": "里程碑"
   },
   "issue_detail": {
     "add your comment": "添加你的评论",
