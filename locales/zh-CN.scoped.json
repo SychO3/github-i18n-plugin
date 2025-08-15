@@ -1,0 +1,108 @@
+{
+  "css": [
+    {
+      "selector": ".HeaderMenu .HeaderMenu-link[aria-label]",
+      "key": "aria-label",
+      "replacement": "通知",
+      "pattern": "https://github.com/*"
+    }
+  ],
+  "dict": {
+    "issues": "问题",
+    "pull requests": "拉取请求",
+    "code": "代码",
+    "projects": "项目",
+    "security": "安全",
+    "insights": "洞察",
+    "settings": "设置",
+    "new": "新建",
+    "create": "创建",
+    "edit": "编辑",
+    "search": "搜索",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "close": "关闭",
+    "comment": "评论"
+  },
+  "scopes": [
+    {
+      "pattern": "https://github.com/",
+      "dict": {
+        "skip to content": "跳转到内容"
+
+      }
+    },
+    {
+      "pattern": "https://github.com/*",
+      "dict": {
+        "followers": "关注者",
+        "following": "正在关注",
+        "repositories": "仓库",
+        "pinned": "置顶",
+        "loading": "加载中",
+        "overview": "概览",
+        "projects": "项目",
+        "packages": "包",
+        "people": "人员",
+        "more": "更多",
+        "public": "公开",
+        "private": "私有",
+        "fork": "复刻",
+        "archived": "已归档",
+        "mirrors": "镜像",
+        "templates": "模板",
+        "all": "全部",
+        "sources": "源码",
+        "forks": "复刻",
+        "select type": "选择类型",
+        "select language": "选择语言",
+        "select order": "选择排序",
+        "last updated": "最后更新",
+        "name": "名称",
+        "stars": "星标",
+        "view all repositories": "查看所有仓库",
+        "top languages": "主要语言",
+        "most used topics": "最常用主题",
+        "uh oh": "出错了",
+        "there was an error while loading": "加载时出现错误",
+        "please reload this page": "请重新加载页面",
+        "footer navigation": "页脚导航",
+        "terms": "条款",
+        "privacy": "隐私",
+        "security": "安全",
+        "status": "状态",
+        "docs": "文档",
+        "contact": "联系",
+        "manage cookies": "管理 Cookie",
+        "do not share my personal information": "不要分享我的个人信息"
+      }
+    },
+    {
+      "pattern": "https://github.com/*/*/issues*",
+      "dict": {
+        "new": "新建问题",
+        "close": "关闭问题",
+        "comment": "提交评论"
+      }
+    },
+    {
+      "pattern": "https://github.com/*/*/pulls*",
+      "dict": {
+        "new": "新建拉取请求",
+        "close": "关闭拉取请求",
+        "comment": "提交评审"
+      }
+    },
+    {
+      "pattern": "https://github.com/*/*/actions*",
+      "dict": {
+        "runs": "运行",
+        "workflow": "工作流",
+        "new": "新建工作流"
+      }
+    }
+  ]
+}
+
+
