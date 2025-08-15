@@ -113,7 +113,9 @@
     "Not reviewed by you": "您未审查",
     "Awaiting review from you": "等待您的审查",
     "Awaiting review from you or your team": "等待您或您的团队的审查",
-    "Filters": "过滤器"
+    "Filters": "过滤器",
+    "Filter types": "过滤类型",
+    "Types" : "类型"
   },
   "templates": {
     "you could search [a0] or try an [a1].": {
@@ -213,8 +215,7 @@
     "No codespaces": "没有代码空间",
     "You don't have any codespaces with this repository checked out": "您还没有为此仓库创建任何代码空间",
     "Filter by issue type": "按问题类型过滤",
-    "Filter types": "过滤类型",
-    "Types" : "类型",
+
     "templates": {
       "You don't have any public SSH keys in your GitHub account. You can [A0], or try cloning this repository via HTTPS.": {
         "html": "您的 GitHub 账户中没有任何公共 SSH 密钥。您可以 [A0]，或者尝试通过 HTTPS 克隆此仓库。",
