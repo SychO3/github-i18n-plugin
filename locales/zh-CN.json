@@ -9,7 +9,15 @@
     { "type": "prefix", "pattern": "https://github.com/settings/profile", "key": "settings_profile" }
   ],
   "global": {
+    "Terms": "条款",
+    "Contact": "联系",
+    "Manage cookies": "管理 Cookies",
+    "Do not share my personal information": "不要分享我的个人信息",
+    "Privacy": "隐私",
+    "Status": "状态",
+    "watching": "正在关注",
     "sign in": "登录",
+    "forks": "复刻",
     "sign up": "注册",
     "search": "搜索",
     "code": "代码",
@@ -19,9 +27,11 @@
     "actions": "Actions",
     "projects": "项目",
     "wiki": "维基",
+    "Contributors": "贡献者",
     "security": "安全",
     "insights": "洞察",
     "settings": "设置",
+    "Languages": "语言",
     "discussions": "讨论",
     "releases": "版本发布",
     "packages": "软件包",
@@ -30,7 +40,7 @@
     "unwatch": "取消关注",
     "star": "标星",
     "unstar": "取消标星",
-    "fork": "派生",
+    "fork": "复刻",
     "edit": "编辑",
     "delete": "删除",
     "save": "保存",
@@ -64,7 +74,9 @@
     "Most commented": "最多评论",
     "Least commented": "最少评论",
     "Recently updated": "最近更新",
-    "Least recently updated": "更新最早"
+    "Least recently updated": "更新最早",
+    "Lists": "列表",
+    "Create list": "创建列表"
   },
   "templates": {
     "you could search [a0] or try an [a1].": {
@@ -97,13 +109,26 @@
  
   },
   "repo_home": {
-    "about": "简介",
-    "readme": "自述文件",
-    "go to file": "转到文件",
-    "add file": "添加文件",
-    "use this template": "使用此模板",
-    "clone": "克隆",
-    "contributors": "贡献者"
+    "About": "简介",
+    "Readme": "自述文件",
+    "Participating and @mentions": "参与和 @提及",
+    "Only receive notifications from this repository when participating or @mentioned.": "仅在参与或被 @提及时接收来自此仓库的通知。",
+    "All Activity": "所有活动",
+    "Notified of all notifications on this repository.": "通知您此仓库上的所有通知。",
+    "Ignore": "忽略",
+    "Never be notified.": "从不接收通知。",
+    "Custom": "自定义",
+    "Select events you want to be notified of in addition to participating and @mentions.": "选择您希望在参与和 @提及之外接收通知的事件。",
+    "Existing forks": "现有复刻",
+    "Create a new fork": "创建新复刻",
+    "Branches": "分支",
+    "Tags": "标签",
+    "Contributing": "贡献",
+    "Activity": "活动",
+    "Custom properties": "自定义属性",
+    "Report repository": "举报仓库",
+    "Sponsor this project": "赞助此项目",
+    "No packages published": "没有发布的软件包",
   },
   "repo_discussions": {
     "discussions": "讨论",
@@ -193,8 +218,7 @@
     "Organization": "组织",
     "Filter by organization or owner": "按组织或所有者过滤",
     "Filter organizations": "过滤组织",
-    "No results matched your search.": "没有结果匹配您的搜索。",
-    "You could search all of GitHub or try an advanced search.": "您可以搜索整个 GitHub 或尝试高级搜索。"
+    "No results matched your search.": "没有结果匹配您的搜索。"
   },
   "issue_detail": {
     "add your comment": "添加您的评论",
