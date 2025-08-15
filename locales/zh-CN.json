@@ -130,6 +130,8 @@
     "patterns": [
       { "regex": "^(\\d+)\\s+results$", "replace": "$1 条结果" }
     ],
+    "updated-desc": "最新更新",
+    "updated-asc": "最早更新",
 
     "assigned": "已指派",
     "created": "已创建",
