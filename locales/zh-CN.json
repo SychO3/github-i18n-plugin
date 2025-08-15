@@ -2021,8 +2021,10 @@
     "6 months": "6 个月",
 
     "restrict users who are permitted to approve or request changes on pull requests in this repository.":"限制用户在拉取请求中批准或请求更改的权限。",
-    "limit to users explicitly granted read or higher access": "仅限已被明确授予读取或更高权限的用户",
-    "When enabled, only users explicitly granted access to this repository will be able to submit pull request reviews that \"approve\" or \"request changes\". all users able to submit comment pull request reviews will continue to be able to do so.": "启用后，只有已被明确授予访问此仓库权限的用户才能提交拉取请求审查，“批准”或“请求更改”。所有能够提交拉取请求审查的用户将继续能够这样做。",
+    "limit to users explicitly granted": "限制为明确授予",
+    "read": "读取",
+    "or higher access": "或更高权限",
+    "when enabled, only users explicitly granted access to this repository will be able to submit pull request reviews that \"approve\" or \"request changes\". all users able to submit comment pull request reviews will continue to be able to do so.": "启用后，只有已被明确授予访问此仓库权限的用户才能提交拉取请求审查，“批准”或“请求更改”。所有能够提交拉取请求审查的用户将继续能够这样做。",
 
     "code review limit settings saved.": "代码审查限制设置已保存。",
     "there are no environments for this repository": "此仓库没有环境",
