@@ -119,13 +119,23 @@
     "projects": "项目"
   },
   "issues_global": {
+    "Assigned to me": "指派给我的",
+    "Created by me": "我创建的",
+    "Recent activity": "最近活动",
+    "mentioned": "被提及",
+    "Views": "视图",
+    "sort": "排序",
+    "state": "状态",
+    "archived": "已归档",
+    "patterns": [
+      { "regex": "^(\\d+)\\s+results$", "replace": "$1 条结果" }
+    ],
+
     "assigned": "已指派",
     "created": "已创建",
-    "mentioned": "被提及",
     "review requests": "评审请求",
     "closed": "已关闭",
     "open": "打开",
-    "sort": "排序",
     "filters": "筛选",
     "author": "作者",
     "assignee": "负责人",

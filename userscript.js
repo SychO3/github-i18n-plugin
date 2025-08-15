@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub 中文翻译增强
 // @namespace    https://github.com/SychO3/github-i18n-plugin
-// @version      1.0.6
+// @version      1.0.7
 // @description  将 GitHub 页面翻译为中文。采用字典驱动，按页面细分，不改变页面功能；自动处理 PJAX/动态内容。
 // @author       SychO
 // @match        https://github.com/*
@@ -143,6 +143,46 @@
         return merged;
     }
 
+    function buildPatternRulesForPage(pageKey) {
+        const rules = [];
+        const add = (arr) => {
+            if (Array.isArray(arr)) {
+                for (const item of arr) {
+                    if (!item || typeof item !== 'object') continue;
+                    const pattern = item.regex || item.pattern;
+                    const replace = item.replace || item.replacement;
+                    if (!pattern || typeof replace !== 'string') continue;
+                    const flags = item.flags || 'i';
+                    try {
+                        const re = new RegExp(pattern, flags);
+                        rules.push({ re, replace });
+                    } catch (_) {
+                        // ignore invalid regex
+                    }
+                }
+            }
+        };
+        add(loadedDictionaries.patterns);
+        const pageDict = loadedDictionaries[pageKey] || {};
+        add(pageDict.patterns);
+        return rules;
+    }
+
+    function translateByPatterns(text, patternRules) {
+        if (!Array.isArray(patternRules) || !patternRules.length) return null;
+        for (const { re, replace } of patternRules) {
+            if (!re) continue;
+            if (re.test(text)) {
+                try {
+                    return text.replace(re, replace);
+                } catch (_) {
+                    continue;
+                }
+            }
+        }
+        return null;
+    }
+
 
     // 需要跳过翻译的容器选择器
     const SKIP_CONTAINER_SELECTOR = [
@@ -167,7 +207,7 @@
         return false;
     }
 
-    function translateTextNode(node, dict) {
+    function translateTextNode(node, dict, patternRules) {
         if (!node || node.nodeType !== Node.TEXT_NODE) return 0;
         const original = node.nodeValue || '';
         const leading = (original.match(/^\s*/)?.[0]) || '';
@@ -176,18 +216,31 @@
         const key = normalizeKey(core);
         if (!key) return 0;
         const replacement = dict[key];
-        if (!replacement) return 0;
-        const next = leading + replacement + trailing;
-        if (next !== original) {
-            node.nodeValue = next;
-            return 1;
+        if (replacement) {
+            const next = leading + replacement + trailing;
+            if (next !== original) {
+                node.nodeValue = next;
+                return 1;
+            }
+            return 0;
+        }
+        // 尝试模式规则（如 "2 results" 等）
+        if (patternRules && patternRules.length) {
+            const byPattern = translateByPatterns(core, patternRules);
+            if (typeof byPattern === 'string' && byPattern !== core) {
+                const next = leading + byPattern + trailing;
+                if (next !== original) {
+                    node.nodeValue = next;
+                    return 1;
+                }
+            }
         }
         return 0;
     }
 
     let processedElementSet = new WeakSet();
 
-    function tryTranslateByParentElement(textNode, dict) {
+    function tryTranslateByParentElement(textNode, dict, patternRules) {
         const parent = textNode && textNode.parentElement;
         if (!parent || processedElementSet.has(parent)) return 0;
         if (parent.closest(SKIP_CONTAINER_SELECTOR)) return 0;
@@ -205,7 +258,14 @@
         const fullText = parent.textContent || '';
         const norm = normalizeKey(fullText);
         if (!norm || norm.length > 120) return 0;
-        const replacement = dict[norm];
+        let replacement = dict[norm];
+        // 如果没有直接命中，尝试按未规范化文本应用模式规则
+        if (!replacement && patternRules && patternRules.length) {
+            const byPattern = translateByPatterns(fullText, patternRules);
+            if (typeof byPattern === 'string' && byPattern !== fullText) {
+                replacement = byPattern;
+            }
+        }
         if (!replacement) return 0;
         // 如果 replacement 含 HTML 标签，则作为 innerHTML 应用；否则尝试保留 <kbd> 结构
         if (typeof replacement === 'string' && /<[^>]+>/.test(replacement)) {
@@ -256,9 +316,9 @@
         }
         for (const textNode of toProcess) {
             // 先尝试以父元素整体文本进行替换（支持跨内联标签的整体翻译）
-            replacedCount += tryTranslateByParentElement(textNode, dict);
+            replacedCount += tryTranslateByParentElement(textNode, dict, currentPatternRules);
             if (isSkippable(textNode)) continue;
-            replacedCount += translateTextNode(textNode, dict);
+            replacedCount += translateTextNode(textNode, dict, currentPatternRules);
         }
         return replacedCount;
     }
@@ -319,6 +379,7 @@
     let currentPageKey = null;
     let currentDict = null;
     let scheduled = false;
+    let currentPatternRules = [];
 
     function applyTranslation(reason) {
         try {
@@ -328,6 +389,7 @@
             if (pageKey !== currentPageKey || !currentDict) {
                 currentPageKey = pageKey;
                 currentDict = buildDictionaryForPage(pageKey);
+                currentPatternRules = buildPatternRulesForPage(pageKey);
             }
             translateInTree(document.body, currentDict);
             translateAttributesInRoot(document, currentDict);
