@@ -1,5 +1,6 @@
 {
   "routes": [
+    { "type": "regex", "pattern": "^https://github.com/dashboard(?:/.*)?$", "key": "dashboard" },
     { "type": "prefix", "pattern": "https://github.com/", "key": "home" },
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+$", "key": "repo_home" },
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/discussions(?:/.*)?$", "key": "repo_discussions" },
@@ -58,6 +59,25 @@
     "sign in": "登录",
     "sign up": "注册",
     "search": "搜索"
+  },
+  "dashboard": {
+    "Dashboard": "仪表盘",
+    "Top repositories": "热门仓库",
+    "New": "新建",
+    "sign in to github": "登录 GitHub",
+    "username or email address": "用户名或邮箱",
+    "password": "密码",
+    "forgot password?": "忘记密码？",
+    "new to github?create an account": "初次使用 GitHub？创建账户",
+    "sign in with a passkey": "使用通行密钥登录",
+    "uh oh!": "哎呀！",
+    "there was an error while loading. please reload this page.": "加载时发生错误。请重新加载此页面。",
+    "terms": "条款",
+    "privacy": "隐私",
+    "docs": "文档",
+    "contact github support": "联系 GitHub 支持",
+    "manage cookies": "管理 Cookie",
+    "do not share my personal information": "请勿分享我的个人信息"
   },
   "repo_home": {
     "about": "简介",

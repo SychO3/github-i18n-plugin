@@ -10,7 +10,7 @@
 // @license      MIT
 // @grant        GM.getResourceText
 // @grant        GM_getResourceText
-// @resource     zhCN https://raw.githubusercontent.com/SychO3/github-i18n-plugin/main/locales/zh-CN.json
+// @resource     zhCN https://raw.githubusercontent.com/SychO3/github-i18n-plugin/master/locales/zh-CN.json
 // ==/UserScript==
 
 (function () {
