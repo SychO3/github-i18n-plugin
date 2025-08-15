@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub 中文翻译增强
 // @namespace    https://github.com/SychO3/github-i18n-plugin
-// @version      1.0.11
+// @version      1.0.12
 // @description  将 GitHub 页面翻译为中文。采用字典驱动，按页面细分，不改变页面功能；自动处理 PJAX/动态内容。
 // @author       SychO
 // @match        https://github.com/*
@@ -152,7 +152,8 @@
                     const pattern = item.regex || item.pattern;
                     const replace = item.replace || item.replacement;
                     if (!pattern || typeof replace !== 'string') continue;
-                    const flags = item.flags || 'i';
+                    let flags = typeof item.flags === 'string' ? item.flags : 'gi';
+                    if (!flags.includes('g')) flags += 'g';
                     try {
                         const re = new RegExp(pattern, flags);
                         rules.push({ re, replace });
@@ -273,17 +274,21 @@
 
     function translateByPatterns(text, patternRules) {
         if (!Array.isArray(patternRules) || !patternRules.length) return null;
+        let out = text;
+        let changed = false;
         for (const { re, replace } of patternRules) {
             if (!re) continue;
-            if (re.test(text)) {
-                try {
-                    return text.replace(re, replace);
-                } catch (_) {
-                    continue;
+            try {
+                const next = out.replace(re, replace);
+                if (next !== out) {
+                    out = next;
+                    changed = true;
                 }
+            } catch (_) {
+                // ignore invalid regex
             }
         }
-        return null;
+        return changed ? out : null;
     }
 
 

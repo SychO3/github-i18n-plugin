@@ -51,6 +51,8 @@
     "unwatch": "取消关注",
     "star": "标星",
     "unstar": "取消标星",
+    "Repository": "仓库",
+    "No projects": "没有项目",
     "fork": "复刻",
     "edit": "编辑",
     "delete": "删除",
@@ -117,7 +119,9 @@
     "Filter types": "过滤类型",
     "Types" : "类型",
     "Filter by issue type": "按问题类型过滤",
-    "Most reactions": "最多反应"
+    "Most reactions": "最多反应",
+    "Filter by author": "按作者过滤",
+    "Filter by reviews": "按审查过滤"
   },
   "templates": {
     "you could search [a0] or try an [a1].": {
