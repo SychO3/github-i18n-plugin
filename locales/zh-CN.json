@@ -131,7 +131,7 @@
       { "regex": "^(\\d+)\\s+results$", "replace": "$1 条结果" }
     ],
     "updated-desc": "最新更新",
-    "updated-asc": "最早更新",
+    "updated-asc": "最旧更新",
     "Updated": "更新",
     "Sort by": "排序方式",
     "Created on": "创建时间",
@@ -142,7 +142,10 @@
     "Total reactions": "总反应数",
     "Order": "排序",
     "Oldest": "最旧",
-    "Newest": "最新"
+    "Newest": "最新",
+    "author": "作者",
+    "No results": "没有结果",
+    "Try adjusting your search filters.": "尝试调整你的搜索过滤器。"
   },
   "issue_detail": {
     "add your comment": "添加你的评论",
