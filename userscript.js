@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name                GitHub 中文汉化（按 URL 作用域）
+// @name                GitHub 中文汉化
 // @namespace           https://github.com/SychO3/github-i18n-plugin/
-// @version             1.0.0
+// @version             2.0.0
 // @description         仅中文，按 URL 作用域覆盖翻译；更高性能与更少干扰
 // @author              SychO3
 // @match               https://github.com/*
@@ -36,14 +36,74 @@
   let debounceTimer = null;
 
   function init() {
+    // 立即开始翻译，不等待 DOM 完全加载
     loadLocales();
     computeActiveDict();
+    
+    // 如果 DOM 还没准备好，等待一下再翻译
+    if (document.body) {
+      startTranslation();
+    } else {
+      // 等待 body 出现
+      const observer = new MutationObserver((mutations, obs) => {
+        if (document.body) {
+          obs.disconnect();
+          startTranslation();
+        }
+      });
+      observer.observe(document.documentElement, { childList: true });
+    }
+  }
+
+  function startTranslation() {
+    // 先隐藏页面内容，避免闪烁
+    hidePageContent();
+    
+    // 开始翻译
     translateByCssSelector();
     translateTime();
     translatePage();
+    
+    // 翻译完成后显示内容
+    showPageContent();
+    
+    // 设置监听器
     watchDomUpdates();
     watchUrlChanges();
     maybeAddRepoDescTranslateButton();
+  }
+
+  // 隐藏页面内容，避免翻译过程中的闪烁
+  function hidePageContent() {
+    if (!document.body) return;
+    
+    // 添加样式来隐藏内容
+    const style = document.createElement('style');
+    style.id = 'github-i18n-hide';
+    style.textContent = `
+      body > *:not(script):not(style) {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+      body.translated > *:not(script):not(style) {
+        opacity: 1;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // 显示页面内容
+  function showPageContent() {
+    if (!document.body) return;
+    
+    // 添加标记类
+    document.body.classList.add('translated');
+    
+    // 延迟移除隐藏样式，确保过渡效果完成
+    setTimeout(() => {
+      const style = document.getElementById('github-i18n-hide');
+      if (style) style.remove();
+    }, 350);
   }
 
   function loadLocales() {
@@ -99,16 +159,41 @@
 
     const batch = [];
     let current;
+    let processedCount = 0;
+    
+    // 分批处理，每批之间添加小延迟，让页面更平滑
+    const processBatch = () => {
+      if (batch.length === 0) {
+        isTranslating = false;
+        return;
+      }
+      
+      const currentBatch = batch.splice(0, CONFIG.BATCH_SIZE);
+      translateBatch(currentBatch);
+      processedCount += currentBatch.length;
+      
+      // 如果还有内容要处理，继续下一批
+      if (batch.length > 0) {
+        // 使用 requestAnimationFrame 确保平滑
+        requestAnimationFrame(() => {
+          setTimeout(processBatch, 10); // 10ms 延迟，让浏览器有时间渲染
+        });
+      } else {
+        isTranslating = false;
+      }
+    };
+
+    // 收集所有需要翻译的节点
     while ((current = walker.nextNode())) {
       batch.push(current);
-      if (batch.length >= CONFIG.BATCH_SIZE) {
-        translateBatch(batch);
-        batch.length = 0;
-      }
     }
-    if (batch.length > 0) translateBatch(batch);
-
-    isTranslating = false;
+    
+    // 开始处理第一批
+    if (batch.length > 0) {
+      processBatch();
+    } else {
+      isTranslating = false;
+    }
   }
 
   function translateBatch(nodes) {
@@ -183,12 +268,48 @@
 
   function watchDomUpdates() {
     if (!window.MutationObserver) return;
-    const observer = new MutationObserver(debounce(() => {
-      if (!isTranslating) {
-        translatePage();
-        translateTime();
+    
+    let pendingUpdate = false;
+    
+    const observer = new MutationObserver((mutations) => {
+      // 检查是否有重要的变化
+      const hasImportantChanges = mutations.some(mutation => {
+        // 跳过不重要的变化
+        if (mutation.type === 'characterData') {
+          const text = mutation.target.textContent;
+          // 跳过纯数字、空白字符等
+          return text && text.trim() && /[a-zA-Z]/.test(text);
+        }
+        
+        if (mutation.type === 'childList') {
+          // 检查新增的节点是否包含文本内容
+          for (const node of mutation.addedNodes) {
+            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+              return true;
+            }
+            if (node.nodeType === Node.ELEMENT_NODE && node.textContent.trim()) {
+              return true;
+            }
+          }
+        }
+        
+        return false;
+      });
+      
+      if (hasImportantChanges && !pendingUpdate && !isTranslating) {
+        pendingUpdate = true;
+        
+        // 使用防抖，避免频繁更新
+        setTimeout(() => {
+          if (pendingUpdate) {
+            translatePage();
+            translateTime();
+            pendingUpdate = false;
+          }
+        }, CONFIG.DEBOUNCE_DELAY_MS);
       }
-    }, CONFIG.DEBOUNCE_DELAY_MS));
+    });
+    
     observer.observe(document.body, {
       subtree: true,
       childList: true,
@@ -212,15 +333,32 @@
   }
 
   let lastUrl = location.href;
+  let isUrlChanging = false;
+  
   function onUrlMaybeChanged() {
     const now = location.href;
-    if (now === lastUrl) return;
+    if (now === lastUrl || isUrlChanging) return;
+    
+    isUrlChanging = true;
     lastUrl = now;
+    
+    // 隐藏页面内容，避免 URL 变化时的闪烁
+    hidePageContent();
+    
+    // 重新计算翻译词典
     computeActiveDict();
-    translateByCssSelector();
-    translateTime();
-    translatePage();
-    maybeAddRepoDescTranslateButton();
+    
+    // 延迟翻译，让新页面内容加载完成
+    setTimeout(() => {
+      translateByCssSelector();
+      translateTime();
+      translatePage();
+      maybeAddRepoDescTranslateButton();
+      
+      // 显示翻译后的内容
+      showPageContent();
+      isUrlChanging = false;
+    }, 100);
   }
 
   function translateTime() {

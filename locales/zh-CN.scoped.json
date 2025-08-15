@@ -29,7 +29,7 @@
     {
       "pattern": "https://github.com/",
       "dict": {
-        "skip to content": "跳转到内容"
+        "Dashboard": "仪表盘"
 
       }
     },
