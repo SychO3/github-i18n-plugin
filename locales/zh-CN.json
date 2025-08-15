@@ -54,6 +54,13 @@
     "create new file": "新建文件",
     "upload files": "上传文件"
   },
+  "selectors": [
+    {
+      "selector": "span#qb-input-query[data-target=qbsearch-input\\.inputButtonText]",
+      "type": "html",
+      "html": "键入 <kbd class=\"AppHeader-search-kbd\">/</kbd> 进行搜索"
+    }
+  ],
   "home": {
     "build and ship software on a single, collaborative platform": "在一个协作平台上构建与交付软件",
     "sign in": "登录",

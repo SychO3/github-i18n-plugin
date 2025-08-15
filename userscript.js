@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub 中文翻译增强
 // @namespace    https://github.com/SychO3/github-i18n-plugin
-// @version      1.0.0
+// @version      1.0.1
 // @description  将 GitHub 页面翻译为中文。采用字典驱动，按页面细分，不改变页面功能；自动处理 PJAX/动态内容。
 // @author       SychO
 // @match        https://github.com/*
@@ -139,6 +139,51 @@
         return merged;
     }
 
+    function buildSelectorsForPage(pageKey) {
+        const result = [];
+        const add = (arr) => {
+            if (Array.isArray(arr)) result.push(...arr);
+        };
+        add(loadedDictionaries.selectors);
+        const pageDict = loadedDictionaries[pageKey] || {};
+        add(pageDict.selectors);
+        return result;
+    }
+
+    function applySelectorTranslations(selectorRules) {
+        if (!Array.isArray(selectorRules) || selectorRules.length === 0) return 0;
+        let count = 0;
+        for (const rule of selectorRules) {
+            if (!rule || typeof rule !== 'object') continue;
+            const selector = rule.selector;
+            if (!selector || typeof selector !== 'string') continue;
+            const type = rule.type || rule.mode || 'html';
+            try {
+                const nodes = document.querySelectorAll(selector);
+                nodes.forEach((el) => {
+                    if (type === 'text') {
+                        if (typeof rule.text === 'string') {
+                            if (el.textContent !== rule.text) {
+                                el.textContent = rule.text;
+                                count++;
+                            }
+                        }
+                    } else {
+                        if (typeof rule.html === 'string') {
+                            if (el.innerHTML !== rule.html) {
+                                el.innerHTML = rule.html;
+                                count++;
+                            }
+                        }
+                    }
+                });
+            } catch (_) {
+                // ignore invalid selectors
+            }
+        }
+        return count;
+    }
+
     // 需要跳过翻译的容器选择器
     const SKIP_CONTAINER_SELECTOR = [
         'pre', 'code', 'kbd', 'samp', 'var',
@@ -203,6 +248,7 @@
     let currentPageKey = null;
     let currentDict = null;
     let scheduled = false;
+    let currentSelectorRules = [];
 
     function applyTranslation(reason) {
         try {
@@ -210,8 +256,10 @@
             if (pageKey !== currentPageKey || !currentDict) {
                 currentPageKey = pageKey;
                 currentDict = buildDictionaryForPage(pageKey);
+                currentSelectorRules = buildSelectorsForPage(pageKey);
             }
             translateInTree(document.body, currentDict);
+            applySelectorTranslations(currentSelectorRules);
         } catch (e) {
             // eslint-disable-next-line no-console
             console.debug('[GH i18n] translate error:', e, 'reason =', reason);
