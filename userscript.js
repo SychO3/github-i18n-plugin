@@ -259,6 +259,63 @@
         const t = activeDict[key];
         if (t) el.ariaLabel = el.ariaLabel.replace(el.ariaLabel.trim(), t);
       }
+
+      // 处理包含 HTML 标签的复杂文本元素
+      if (el.children.length > 0 && el.textContent.trim()) {
+        translateComplexElement(el);
+      }
+    }
+  }
+
+  // 翻译包含 HTML 标签的复杂元素
+  function translateComplexElement(el) {
+    // 跳过已经处理过的元素
+    if (el.hasAttribute('data-i18n-processed')) return;
+    
+    const fullText = el.textContent.trim();
+    if (!fullText) return;
+    
+    // 尝试匹配完整的文本（包含 HTML 标签）
+    const key = normalizeKey(fullText);
+    const t = activeDict[key];
+    
+    if (t) {
+      // 如果找到完整翻译，直接替换 innerHTML
+      el.innerHTML = t;
+      el.setAttribute('data-i18n-processed', 'true');
+      return;
+    }
+    
+    // 如果没有完整翻译，尝试部分匹配
+    const partialKey = normalizeKey(fullText.replace(/<[^>]*>/g, '').trim());
+    const partialT = activeDict[partialKey];
+    
+    if (partialT) {
+      // 保持原有的 HTML 结构，只替换文本部分
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = el.innerHTML;
+      
+      // 递归处理子节点
+      const walkTextNodes = (node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const text = node.textContent.trim();
+          if (text) {
+            const textKey = normalizeKey(text);
+            const textT = activeDict[textKey];
+            if (textT) {
+              node.textContent = textT;
+            }
+          }
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          for (const child of node.childNodes) {
+            walkTextNodes(child);
+          }
+        }
+      };
+      
+      walkTextNodes(tempDiv);
+      el.innerHTML = tempDiv.innerHTML;
+      el.setAttribute('data-i18n-processed', 'true');
     }
   }
 
