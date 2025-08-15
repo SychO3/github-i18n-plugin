@@ -2142,12 +2142,13 @@
 
     "contributions & activity": "贡献与活动",
     "enabling this will hide your contributions and activity from your github profile and from social features like followers, stars, feeds, leaderboards and releases.": "启用此功能将隐藏您的贡献和活动，包括您的 GitHub 个人资料以及关注者、星标、动态、排行榜和发行版等社交功能。",
-    "your contribution graph, achievements, and activity overview will show your private contributions without revealing any repository or organization information. ": "您的贡献图表、成就和活动概览将显示您的私有贡献，而不会透露任何仓库或组织信息。",
     "update preferences": "更新偏好设置",
+    "your contribution graph, achievements, and activity overview will show your private contributions without revealing any repository or organization information. ": "您的贡献图表、成就和活动概览将显示您的私有贡献，而不会透露任何仓库或组织信息。",
+    "read more": "阅读更多",
 
     "this will display the": "此操作将显示",
     "badge on your public profile page.": "徽章在您的公共个人资料页面上。",
-    "show Achievements on my profile": "展示成就",
+    "show achievements on my profile": "展示成就",
     "your achievements will be shown on your profile.": "您的成就将显示在您的个人资料上。",
 
     "building an application, service, or tool that integrates with github?": "正在构建一个与 GitHub 集成的应用程序、服务或工具？",
