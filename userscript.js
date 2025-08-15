@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub 中文翻译增强
 // @namespace    https://github.com/SychO3/github-i18n-plugin
-// @version      1.0.10
+// @version      1.0.11
 // @description  将 GitHub 页面翻译为中文。采用字典驱动，按页面细分，不改变页面功能；自动处理 PJAX/动态内容。
 // @author       SychO
 // @match        https://github.com/*
@@ -408,8 +408,30 @@
                 }
                 return 0;
             } else {
-                if (parent.textContent !== next) {
-                    parent.textContent = next;
+                // 保留内联子元素（例如 caret 的 <span>），仅替换父级中的文本节点
+                let replaced = false;
+                let changed = false;
+                parent.childNodes.forEach((n) => {
+                    if (n.nodeType === Node.TEXT_NODE) {
+                        const cur = n.nodeValue || '';
+                        const curNorm = normalizeKey(cur);
+                        if (curNorm) {
+                            if (!replaced) {
+                                if (cur !== next) {
+                                    n.nodeValue = next;
+                                    changed = true;
+                                }
+                                replaced = true;
+                            } else {
+                                if (cur !== '') {
+                                    n.nodeValue = '';
+                                    changed = true;
+                                }
+                            }
+                        }
+                    }
+                });
+                if (changed) {
                     processedElementSet.add(parent);
                     return 1;
                 }
