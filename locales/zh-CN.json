@@ -2,6 +2,7 @@
   "routes": [
     { "type": "regex", "pattern": "^https://github.com/dashboard(?:/.*)?$", "key": "dashboard" },
     { "type": "regex", "pattern": "^https://github.com/issues(?:/.*)?$", "key": "issues_global" },
+    { "type": "regex", "pattern": "^https://github.com/pulls(?:/.*)?$", "key": "pulls_global" },
     { "type": "prefix", "pattern": "https://github.com/", "key": "dashboard" },
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+$", "key": "repo_home" },
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/discussions(?:/.*)?$", "key": "repo_discussions" },
@@ -54,7 +55,17 @@
     "history": "历史",
     "download zip": "下载 ZIP",
     "create new file": "新建文件",
-    "upload files": "上传文件"
+    "upload files": "上传文件",
+    "Sort": "排序",
+    "Sort by": "排序方式",
+    "Newest": "最新",
+    "Oldest": "最旧",
+    "Most commented": "最多评论",
+    "Least commented": "最少评论",
+    "Recently updated": "最近更新",
+    "Least recently updated": "更新最早",
+    "Best match": "最佳匹配",
+    "Most reactions": "最多反应"
   },
   "dashboard": {
     "Dashboard": "仪表盘",
@@ -137,7 +148,6 @@
     "Created on": "创建时间",
     "Last updated": "最后更新",
     "Total comments": "总评论数",
-    "Best match": "最佳匹配",
     "Reactions": "反应",
     "Total reactions": "总反应数",
     "Order": "排序",
@@ -146,6 +156,22 @@
     "author": "作者",
     "No results": "没有结果",
     "Try adjusting your search filters.": "尝试调整你的搜索过滤器。"
+  },
+  "pulls_global": {
+    "Created": "已创建",
+    "Assigned": "已指派",
+    "Mentioned": "被提及",
+    "Review requests": "审查请求",
+    "Open": "打开",
+    "Closed": "已关闭",
+    "Visibility": "可见性",
+    "Repository visibility": "仓库可见性",
+    "Private repositories only": "仅私有仓库",
+    "Public repositories only": "仅公共仓库",
+    "Organization": "组织",
+    "Filter by organization or owner": "按组织或所有者过滤",
+    "Filter organizations": "过滤组织"
+
   },
   "issue_detail": {
     "add your comment": "添加你的评论",
