@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub 中文翻译增强
 // @namespace    https://github.com/SychO3/github-i18n-plugin
-// @version      1.0.5
+// @version      1.0.6
 // @description  将 GitHub 页面翻译为中文。采用字典驱动，按页面细分，不改变页面功能；自动处理 PJAX/动态内容。
 // @author       SychO
 // @match        https://github.com/*
@@ -263,6 +263,56 @@
         return replacedCount;
     }
 
+    function translateAttributesInRoot(root, dict) {
+        if (!root || !dict) return 0;
+        let count = 0;
+        try {
+            const attrTargets = [
+                ['placeholder'],
+                ['title'],
+                ['aria-label']
+            ];
+            const walker = (container) => {
+                const all = container.querySelectorAll('*');
+                all.forEach((el) => {
+                    for (const attrs of attrTargets) {
+                        for (const attr of attrs) {
+                            if (!el.hasAttribute(attr)) continue;
+                            const value = el.getAttribute(attr) || '';
+                            const key = normalizeKey(value);
+                            if (!key) continue;
+                            const replacement = dict[key];
+                            if (!replacement) continue;
+                            if (replacement !== value) {
+                                el.setAttribute(attr, replacement);
+                                count++;
+                            }
+                        }
+                    }
+                });
+            };
+            if (root instanceof ShadowRoot || root instanceof Document || root instanceof HTMLElement) {
+                walker(root);
+            }
+        } catch (_) {}
+        return count;
+    }
+
+    function translateInAllShadowRoots(dict) {
+        let count = 0;
+        try {
+            const all = document.querySelectorAll('*');
+            all.forEach((el) => {
+                const sr = el.shadowRoot;
+                if (sr) {
+                    count += translateInTree(sr, dict);
+                    count += translateAttributesInRoot(sr, dict);
+                }
+            });
+        } catch (_) {}
+        return count;
+    }
+
     // ---------------------------
     // 事件与观察
     // ---------------------------
@@ -280,6 +330,8 @@
                 currentDict = buildDictionaryForPage(pageKey);
             }
             translateInTree(document.body, currentDict);
+            translateAttributesInRoot(document, currentDict);
+            translateInAllShadowRoots(currentDict);
         } catch (e) {
             // eslint-disable-next-line no-console
             console.debug('[GH i18n] translate error:', e, 'reason =', reason);

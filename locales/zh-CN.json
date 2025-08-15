@@ -70,7 +70,18 @@
     "Feed": "动态",
     "Filter": "筛选",
     "Join discussion": "参与讨论",
-    "Recommended for you": "为你推荐"
+    "Recommended for you": "为你推荐",
+    "released": "发布于",
+    "Events": "事件",
+    "Activity you want to see on your feed": "你想在动态中看到的活动",
+    "Announcements": "公告",
+    "Special discussion posts from repositories": "来自仓库的特别讨论帖子",
+
+    "Update posts from repositories": "更新来自仓库的帖子",
+    "Sponsors": "赞助商",
+    "Relevant projects or people that are being sponsored": "相关的项目或人正在被赞助",
+    "Stars": "星标",
+    "Repositories being starred by people": "人们正在标星的仓库"
  
   },
   "repo_home": {
