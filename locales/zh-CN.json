@@ -2005,6 +2005,21 @@
     "new users": "新用户",
     "users": "用户",
 
+    "limit to prior contributors": "限制现有贡献者",
+    "users that have not previously": "之前没有",
+    "committed": "提交",
+    "to the main branch of this repository will be unable to interact with the repository.": "到此仓库的主分支将无法与仓库进行交互。",
+
+    "limit to repository collaborators": "限制仓库协作者",
+    "users that are not": "用户不是",
+    "will not be able to interact with the repository.": "将无法与仓库进行交互。",
+    "enable interaction limits for:": "启用交互限制：",
+    "24 hours": "24 小时",
+    "3 days": "3 天",
+    "1 week": "1 周",
+    "1 month": "1 个月",
+    "6 months": "6 个月",
+
 
     "__dict-end": "end",
     "this branch is not ahead of the upstream": "当前分支与上游分支保持一致",
