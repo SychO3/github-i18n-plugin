@@ -132,17 +132,17 @@
     ],
     "updated-desc": "最新更新",
     "updated-asc": "最早更新",
-
-    "assigned": "已指派",
-    "created": "已创建",
-    "review requests": "评审请求",
-    "closed": "已关闭",
-    "open": "打开",
-    "filters": "筛选",
-    "author": "作者",
-    "assignee": "负责人",
-    "label": "标签",
-    "milestone": "里程碑"
+    "Updated": "更新",
+    "Sort by": "排序方式",
+    "Created on": "创建时间",
+    "Last updated": "最后更新",
+    "Total comments": "总评论数",
+    "Best match": "最佳匹配",
+    "Reactions": "反应",
+    "Total reactions": "总反应数",
+    "Order": "排序",
+    "Oldest": "最旧",
+    "Newest": "最新"
   },
   "issue_detail": {
     "add your comment": "添加你的评论",
