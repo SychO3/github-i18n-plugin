@@ -145,9 +145,12 @@
     "Updated": "更新",
     "Sort by": "排序方式",
     "Created on": "创建时间",
+    "involves": "涉及",
     "Last updated": "最后更新",
+    "mentions": "提及",
     "Total comments": "总评论数",
     "Best match": "最佳匹配",
+    "assignee": "负责人",
     "Reactions": "反应",
     "Total reactions": "总反应数",
     "Order": "排序",
@@ -165,6 +168,8 @@
     "Query": "查询",
     "Search Issues": "搜索问题",
     "Save view": "保存视图",
+    "Edit view": "编辑视图",
+    "Duplicate": "复制",
     "Build powerful views to keep track of work": "构建强大的视图以跟踪工作",
     "Create your own views to quickly find and access your work.": "创建自己的视图以快速查找和访问您的工作。"
   },
@@ -181,8 +186,9 @@
     "Public repositories only": "仅公共仓库",
     "Organization": "组织",
     "Filter by organization or owner": "按组织或所有者过滤",
-    "Filter organizations": "过滤组织"
-
+    "Filter organizations": "过滤组织",
+    "No results matched your search.": "没有结果匹配您的搜索。",
+    "You could search all of GitHub or try an advanced search.": "您可以搜索整个 GitHub 或尝试高级搜索。"
   },
   "issue_detail": {
     "add your comment": "添加您的评论",
