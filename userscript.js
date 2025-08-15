@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                GitHub 中文汉化
 // @namespace           https://github.com/SychO3/github-i18n-plugin/
-// @version             2.0.0
+// @version             2.0.1
 // @description         仅中文，按 URL 作用域覆盖翻译；更高性能与更少干扰
 // @author              SychO3
 // @match               https://github.com/*
