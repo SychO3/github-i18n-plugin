@@ -2020,6 +2020,33 @@
     "1 month": "1 个月",
     "6 months": "6 个月",
 
+    "restrict users who are permitted to approve or request changes on pull requests in this repository.":"限制用户在拉取请求中批准或请求更改的权限。",
+    "limit to users explicitly granted read or higher access": "仅限已被明确授予读取或更高权限的用户",
+    "When enabled, only users explicitly granted access to this repository will be able to submit pull request reviews that \"approve\" or \"request changes\". all users able to submit comment pull request reviews will continue to be able to do so.": "启用后，只有已被明确授予访问此仓库权限的用户才能提交拉取请求审查，“批准”或“请求更改”。所有能够提交拉取请求审查的用户将继续能够这样做。",
+
+    "code review limit settings saved.": "代码审查限制设置已保存。",
+    "there are no environments for this repository": "此仓库没有环境",
+    "environments are used by your workflows for deployments.": "环境用于您的工作流部署。",
+    "new environment": "新建环境",
+    "prebuild configuration": "预构建配置",
+    "there are no prebuilds configured for this repository": "此仓库没有预构建配置",
+    "prebuild configurations speed up codespace creations significantly by pre-executing all the tasks required to build your development environment.": "预构建配置通过预执行构建开发环境所需的所有任务，显著加快代码空间创建速度。",
+
+    "set up prebuild": "设置预构建",
+    "learn more about setting up prebuilds": "了解更多关于设置预构建的信息",
+
+    "best for using frameworks and customizing your build process": "最佳用于使用框架和自定义构建过程",
+    "classic pages experience": "经典页面体验",
+
+    "deploy from a branch": "从分支部署",
+
+    "webhooks allow external services to be notified when certain events happen. when the specified events happen, we'll send a post request to each of the urls you provide. learn more in our": "Webhooks 允许外部服务在某些事件发生时通知您。当指定的事件发生时，我们将向您提供的每个 URL 发送 POST 请求。了解更多请访问",
+    "Webhooks guide": "Webhooks 指南",
+    "add webhook": "添加 Webhook",
+
+    "if disabled, the models tab will be hidden, and the prompt editor and comparison tooling evaluations will be unavailable.": "如果禁用，模型选项卡将被隐藏，提示编辑器和对比工具评估功能将不可用。",
+    "learn more about models.": "了解更多关于模型的信息。",
+
 
     "__dict-end": "end",
     "this branch is not ahead of the upstream": "当前分支与上游分支保持一致",
