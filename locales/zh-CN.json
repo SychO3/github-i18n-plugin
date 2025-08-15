@@ -1993,14 +1993,15 @@
     "your name may appear around github where you contribute or are mentioned. you can remove it at any time.": "您的名字可能会出现在 GitHub 的各个地方，当您贡献或被提及时。您可以随时删除它。",
     "jobs profile": "作业配置文件",
     "you have set your email address to private. to toggle email privacy,go to" :"您已将电子邮件地址设置为私有。要切换电子邮件隐私，请转到",
-    "and uncheck 'keep my email address private.'": "并取消选中“保持我的电子邮件地址私有”。",
-    "you can @mention other users and organizations to link to them.": "您可以 @提及其他用户和组织来链接它们。",
     "display current local time": "显示当前本地时间",
     "pronouns": "代词",
     "social accounts": "社交账户",
-    "you can @mention your company’s github organization to link it.": "您可以 @提及您的公司 GitHub 组织来链接它。",
     "other users will see the time difference from their local time." : "其他用户将看到他们本地时间的时间差。",
-    "orcid provides a persistent identifier - an orcid id - that distinguishes you from other researchers. lear  more at": "ORCID 提供了一个持久的标识符 - ORCID iD - 来区分您与其他研究人员。了解更多请访问",
+    "orcid provides a persistent identifier - an orcid id - that distinguishes you from other researchers. learn more at": "ORCID 提供了一个持久的标识符 - ORCID iD - 来区分您与其他研究人员。了解更多请访问",
+    "connect your orcid id": "连接您的 ORCID iD",
+    "all of the fields on this page are optional and can be deleted at any time, and by filling them out, you're giving us consent to share this data wherever your user profile appears. please see our": "此页面上的所有字段都是可选的，可以随时删除，通过填写这些字段，您同意我们在您的用户资料出现的任何地方共享这些数据。请参阅我们的",
+    "privacy statement": "隐私声明",
+    "to learn more about how we use this information.": "以了解我们如何使用这些信息。",
     "make profile private and hide activity": "将个人资料设为私有并隐藏活动",
     "create codespace on main": "在主分支上创建代码空间",
     "learn more about codespaces...": "了解更多关于代码空间的信息...",
@@ -2124,6 +2125,20 @@
 
     "if disabled, the models tab will be hidden, and the prompt editor and comparison tooling evaluations will be unavailable.": "如果禁用，模型选项卡将被隐藏，提示编辑器和对比工具评估功能将不可用。",
     "learn more about models.": "了解更多关于模型的信息。",
+
+    "private contributions": "私有贡献",
+    "turning off private contributions will show only public activity on your profile.": "关闭私有贡献将仅显示您个人资料上的公共活动。",
+
+    "seeing something unexpected? take a look at the": "看到意外的事情？请查看",
+    "github profile guide": "GitHub 个人资料指南",
+    "select a verified email to display": "选择一个已验证的电子邮件地址进行显示",
+    "you have set your email address to private. to toggle email privacy, go to": "您已将电子邮件地址设置为私有。要切换电子邮件隐私，请转到",
+    "and uncheck \"Keep my email address private.\"": "并取消选中“保持我的电子邮件地址私有”。",
+    "other users and organizations to link to them.": "其他用户和组织来链接它们。",
+    "your company’s github organization to link it.": "您的公司 GitHub 组织来链接它。",
+
+    "activity overview": "活动概览",
+    "turning on the activity overview will show an overview of your activity across organizations and repositories.": "开启活动概览将显示您在组织和仓库中的活动概览。",
 
 
     "__dict-end": "end",
