@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                GitHub 中文汉化
 // @namespace           https://github.com/SychO3/github-i18n-plugin/
-// @version             2.0.1
+// @version             2.0.2
 // @description         仅中文，按 URL 作用域覆盖翻译；更高性能与更少干扰
 // @author              SychO3
 // @match               https://github.com/*
@@ -121,12 +121,18 @@
 
   function computeActiveDict() {
     const url = window.location.href;
+    console.log('[i18n] 当前URL:', url);
+    
     const merged = { ...locales.dict };
     for (const scope of locales.scopes) {
       if (scope && scope.pattern && scope.dict && isUrlMatch(scope.pattern, url)) {
+        console.log('[i18n] 匹配作用域:', scope.pattern);
+        console.log('[i18n] 作用域词典:', scope.dict);
         Object.assign(merged, scope.dict);
       }
     }
+    
+    console.log('[i18n] 最终词典:', merged);
     activeDict = merged;
   }
 
@@ -203,7 +209,10 @@
   function shouldTranslateElement(el) {
     // 跳过不应翻译的元素/区域
     const skipTags = ['CODE', 'SCRIPT', 'LINK', 'IMG', 'SVG', 'TABLE', 'PRE'];
-    if (skipTags.includes(el.tagName)) return false;
+    if (skipTags.includes(el.tagName)) {
+      console.log('[i18n] 跳过标签:', el.tagName);
+      return false;
+    }
 
     const skipClasses = [
       'CodeMirror', 'js-navigation-container', 'blob-code', 'topic-tag',
@@ -212,16 +221,38 @@
       'cm-editor', 'react-code-lines', 'PRIVATE_TreeView-item', 'repo'
     ];
     if (el.classList) {
-      for (const c of skipClasses) if (el.classList.contains(c)) return false;
+      for (const c of skipClasses) {
+        if (el.classList.contains(c)) {
+          console.log('[i18n] 跳过类名:', c);
+          return false;
+        }
+      }
     }
 
     const skipIds = ['readme', 'file-name-editor-breadcrumb', 'StickyHeader', 'sticky-file-name-id', 'sticky-breadcrumb'];
-    if (el.id && skipIds.includes(el.id)) return false;
+    if (el.id && skipIds.includes(el.id)) {
+      console.log('[i18n] 跳过ID:', el.id);
+      return false;
+    }
 
     // itemprop="name" 等
     if (el.getAttribute) {
       const itemprop = el.getAttribute('itemprop');
-      if (itemprop && itemprop.split(' ').includes('name')) return false;
+      if (itemprop && itemprop.split(' ').includes('name')) {
+        console.log('[i18n] 跳过itemprop:', itemprop);
+        return false;
+      }
+    }
+
+    // 调试 Dashboard 元素
+    if (el.textContent && el.textContent.includes('Dashboard')) {
+      console.log('[i18n] 检查Dashboard元素:', {
+        tagName: el.tagName,
+        className: el.className,
+        id: el.id,
+        textContent: el.textContent,
+        willTranslate: true
+      });
     }
 
     return true;
@@ -235,7 +266,10 @@
       if (!trimmed) return;
       const key = normalizeKey(trimmed);
       const t = activeDict[key];
-      if (t) node.textContent = raw.replace(trimmed, t);
+      if (t) {
+        node.textContent = raw.replace(trimmed, t);
+        console.log('[i18n] 翻译文本节点:', trimmed, '→', t);
+      }
       return;
     }
 
