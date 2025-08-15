@@ -30,7 +30,7 @@
     "unwatch": "取消关注",
     "star": "标星",
     "unstar": "取消标星",
-    "fork": "派生",
+    "fork": "复刻",
     "edit": "编辑",
     "delete": "删除",
     "save": "保存",
@@ -65,7 +65,12 @@
     "Recently updated": "最近更新",
     "Least recently updated": "更新最早",
     "Best match": "最佳匹配",
-    "Most reactions": "最多反应"
+    "Most reactions": "最多反应",
+    "patterns": [
+      { "regex": "^(\\d+)\\s+results$", "replace": "$1 条结果" },
+      { "regex": "^(\\d+)\\s+Open$", "replace": "$1 打开" },
+      { "regex": "^(\\d+)\\s+Closed$", "replace": "$1 已关闭" }
+    ]
   },
   "dashboard": {
     "Dashboard": "仪表盘",
@@ -138,9 +143,7 @@
     "sort": "排序",
     "state": "状态",
     "archived": "已归档",
-    "patterns": [
-      { "regex": "^(\\d+)\\s+results$", "replace": "$1 条结果" }
-    ],
+
     "updated-desc": "最新更新",
     "updated-asc": "最旧更新",
     "Updated": "更新",
@@ -170,8 +173,9 @@
     "Public repositories only": "仅公共仓库",
     "Organization": "组织",
     "Filter by organization or owner": "按组织或所有者过滤",
-    "Filter organizations": "过滤组织"
-
+    "Filter organizations": "过滤组织",
+    "No results matched your search.": "没有结果匹配你的搜索。",
+    "You could search all of GitHub or try an advanced search.": "你可以搜索整个 GitHub 或尝试高级搜索。"
   },
   "issue_detail": {
     "add your comment": "添加你的评论",
