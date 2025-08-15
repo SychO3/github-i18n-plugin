@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub 中文翻译增强
 // @namespace    https://github.com/SychO3/github-i18n-plugin
-// @version      1.0.9
+// @version      1.0.10
 // @description  将 GitHub 页面翻译为中文。采用字典驱动，按页面细分，不改变页面功能；自动处理 PJAX/动态内容。
 // @author       SychO
 // @match        https://github.com/*
@@ -347,25 +347,25 @@
         const parent = textNode && textNode.parentElement;
         if (!parent || processedElementSet.has(parent)) return 0;
         if (parent.closest(SKIP_CONTAINER_SELECTOR)) return 0;
-        // 情况 A：仅含 <kbd>
-        const allowedInlineTags = new Set(['KBD']);
+        // 情况 A：仅含内联标签（允许 KBD、SPAN、EM、STRONG、CODE）；含 <a> 走模板
+        const allowedInlineTags = new Set(['KBD', 'SPAN', 'EM', 'STRONG', 'CODE']);
         const children = parent.children;
-        let onlyKbd = true;
-        let onlyAnchorOrKbd = true;
+        let containsOnlyAllowedInline = true;
+        let containsAnchor = false;
         if (children && children.length > 0) {
             for (let i = 0; i < children.length; i++) {
                 const tag = children[i].tagName;
-                if (!allowedInlineTags.has(tag)) onlyKbd = false;
-                if (!(tag === 'A' || tag === 'KBD')) onlyAnchorOrKbd = false;
+                if (tag === 'A') containsAnchor = true;
+                if (!(allowedInlineTags.has(tag) || tag === 'A')) containsOnlyAllowedInline = false;
             }
         }
-        if (!onlyKbd && onlyAnchorOrKbd) {
+        if (containsAnchor && containsOnlyAllowedInline) {
             // 情况 B：仅含 <a>/<kbd>，尝试模板替换以保留链接
             const changed = applyAnchorTemplate(parent, templates, dict, patternRules);
             if (changed) return changed;
             // 未命中模板则不整体替换
             return 0;
-        } else if (!onlyKbd && !onlyAnchorOrKbd && children && children.length > 0) {
+        } else if (!containsOnlyAllowedInline && children && children.length > 0) {
             // 复杂结构：放弃整体替换
             return 0;
         }
