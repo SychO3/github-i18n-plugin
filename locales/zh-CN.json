@@ -1,0 +1,159 @@
+{
+  "routes": [
+    { "type": "prefix", "pattern": "https://github.com/", "key": "home" },
+    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+$", "key": "repo_home" },
+    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/discussions(?:/.*)?$", "key": "repo_discussions" },
+    { "type": "prefix", "pattern": "https://github.com/settings/profile", "key": "settings_profile" }
+  ],
+  "global": {
+    "sign in": "登录",
+    "sign up": "注册",
+    "search": "搜索",
+    "code": "代码",
+    "issues": "问题",
+    "pull requests": "拉取请求",
+    "actions": "Actions",
+    "projects": "项目",
+    "wiki": "维基",
+    "security": "安全",
+    "insights": "洞察",
+    "settings": "设置",
+    "discussions": "讨论",
+    "releases": "版本发布",
+    "packages": "软件包",
+    "sponsor": "赞助",
+    "watch": "关注",
+    "unwatch": "取消关注",
+    "star": "标星",
+    "unstar": "取消标星",
+    "fork": "派生",
+    "edit": "编辑",
+    "delete": "删除",
+    "save": "保存",
+    "cancel": "取消",
+    "preview": "预览",
+    "submit": "提交",
+    "open": "打开",
+    "closed": "已关闭",
+    "merged": "已合并",
+    "comment": "评论",
+    "labels": "标签",
+    "milestones": "里程碑",
+    "assignees": "负责人",
+    "new issue": "新建问题",
+    "new pull request": "新建拉取请求",
+    "create pull request": "创建拉取请求",
+    "compare & pull request": "比较并发起拉取请求",
+    "compare": "比较",
+    "copy": "复制",
+    "raw": "原始",
+    "blame": "追溯",
+    "history": "历史",
+    "download zip": "下载 ZIP",
+    "create new file": "新建文件",
+    "upload files": "上传文件"
+  },
+  "home": {
+    "build and ship software on a single, collaborative platform": "在一个协作平台上构建与交付软件",
+    "sign in": "登录",
+    "sign up": "注册",
+    "search": "搜索"
+  },
+  "repo_home": {
+    "about": "简介",
+    "readme": "自述文件",
+    "go to file": "转到文件",
+    "add file": "添加文件",
+    "use this template": "使用此模板",
+    "clone": "克隆",
+    "contributors": "贡献者"
+  },
+  "repo_discussions": {
+    "discussions": "讨论",
+    "new discussion": "发起讨论",
+    "categories": "分类"
+  },
+  "settings_profile": {
+    "settings": "设置",
+    "profile": "个人资料",
+    "username": "用户名"
+  },
+  "repo": {
+    "about": "简介",
+    "readme": "自述文件",
+    "go to file": "转到文件",
+    "add file": "添加文件",
+    "use this template": "使用此模板",
+    "clone": "克隆",
+    "contributors": "贡献者"
+  },
+  "issues_list": {
+    "filters": "筛选",
+    "sort": "排序",
+    "new": "新建",
+    "author": "作者",
+    "assignee": "负责人",
+    "label": "标签",
+    "milestone": "里程碑",
+    "projects": "项目"
+  },
+  "issue_detail": {
+    "add your comment": "添加你的评论",
+    "reply": "回复",
+    "quote reply": "引用回复",
+    "copy link": "复制链接",
+    "lock conversation": "锁定讨论",
+    "unlock conversation": "解锁讨论"
+  },
+  "pulls_list": {
+    "new pull request": "新建拉取请求",
+    "checks": "检查"
+  },
+  "pr_detail": {
+    "conversation": "讨论",
+    "conversations": "讨论",
+    "files changed": "文件变更",
+    "commits": "提交",
+    "review changes": "审查变更",
+    "approve": "批准",
+    "request changes": "请求更改",
+    "merge pull request": "合并拉取请求",
+    "rebase and merge": "变基并合并",
+    "squash and merge": "压缩提交并合并"
+  },
+  "file_view": {
+    "path": "路径",
+    "copy path": "复制路径",
+    "permalink": "永久链接",
+    "line": "行",
+    "jump to line": "跳至行"
+  },
+  "commits_list": {
+    "commits": "提交",
+    "browse files": "浏览文件"
+  },
+  "commit_detail": {
+    "parent": "上一提交",
+    "browse files": "浏览文件",
+    "showing": "显示",
+    "additions": "新增",
+    "deletions": "删除"
+  },
+  "search": {
+    "all github": "全部 GitHub",
+    "repositories": "仓库",
+    "users": "用户",
+    "code": "代码",
+    "issues": "问题",
+    "pull requests": "拉取请求",
+    "packages": "软件包"
+  },
+  "notifications": {
+    "notifications": "通知",
+    "unread": "未读",
+    "read": "已读",
+    "mark as read": "标记为已读"
+  }
+}
+
+
