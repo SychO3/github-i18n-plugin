@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub 中文翻译增强
 // @namespace    https://github.com/SychO3/github-i18n-plugin
-// @version      1.0.2
+// @version      1.0.5
 // @description  将 GitHub 页面翻译为中文。采用字典驱动，按页面细分，不改变页面功能；自动处理 PJAX/动态内容。
 // @author       SychO
 // @match        https://github.com/*
@@ -64,6 +64,10 @@
     function normalizeKey(text) {
         if (typeof text !== 'string') return '';
         return text.replace(/\s+/g, ' ').trim().toLowerCase();
+    }
+
+    function escapeRegExp(literal) {
+        return literal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
     function detectPageKeyFallback() {
@@ -181,18 +185,29 @@
         return 0;
     }
 
-    const processedElementSet = new WeakSet();
+    let processedElementSet = new WeakSet();
 
     function tryTranslateByParentElement(textNode, dict) {
         const parent = textNode && textNode.parentElement;
         if (!parent || processedElementSet.has(parent)) return 0;
         if (parent.closest(SKIP_CONTAINER_SELECTOR)) return 0;
+        // 仅当父元素的子元素均为安全的内联标签（如 <kbd>）时，才允许整体替换。
+        const allowedInlineTags = new Set(['KBD']);
+        const children = parent.children;
+        if (children && children.length > 0) {
+            for (let i = 0; i < children.length; i++) {
+                const tag = children[i].tagName;
+                if (!allowedInlineTags.has(tag)) {
+                    return 0; // 例如包含 <svg>、<span> 图标等复杂结构时，放弃整体替换
+                }
+            }
+        }
         const fullText = parent.textContent || '';
         const norm = normalizeKey(fullText);
         if (!norm || norm.length > 120) return 0;
         const replacement = dict[norm];
         if (!replacement) return 0;
-        // 如果 replacement 含 HTML 标签，则作为 innerHTML 应用；否则作为纯文本
+        // 如果 replacement 含 HTML 标签，则作为 innerHTML 应用；否则尝试保留 <kbd> 结构
         if (typeof replacement === 'string' && /<[^>]+>/.test(replacement)) {
             if (parent.innerHTML !== replacement) {
                 parent.innerHTML = replacement;
@@ -202,12 +217,30 @@
             return 0;
         } else {
             const next = String(replacement);
-            if (parent.textContent !== next) {
-                parent.textContent = next;
-                processedElementSet.add(parent);
-                return 1;
+            // 若父元素包含一个或多个 <kbd>，尝试将 next 中对应字符替换为原 <kbd> 的 outerHTML
+            const kbdNodes = parent.querySelectorAll('kbd');
+            if (kbdNodes.length > 0) {
+                let html = next;
+                kbdNodes.forEach((k) => {
+                    const token = (k.textContent || '').trim();
+                    if (!token) return;
+                    const re = new RegExp(escapeRegExp(token));
+                    html = html.replace(re, k.outerHTML);
+                });
+                if (parent.innerHTML !== html) {
+                    parent.innerHTML = html;
+                    processedElementSet.add(parent);
+                    return 1;
+                }
+                return 0;
+            } else {
+                if (parent.textContent !== next) {
+                    parent.textContent = next;
+                    processedElementSet.add(parent);
+                    return 1;
+                }
+                return 0;
             }
-            return 0;
         }
     }
 
@@ -239,6 +272,8 @@
 
     function applyTranslation(reason) {
         try {
+            // 每次翻译重新计算已处理元素集合，避免动态更新后无法再次翻译
+            processedElementSet = new WeakSet();
             const pageKey = detectActivePageKey();
             if (pageKey !== currentPageKey || !currentDict) {
                 currentPageKey = pageKey;
@@ -268,9 +303,19 @@
                     scheduleTranslate('mutation:childList');
                     break;
                 }
+                if (m.removedNodes && m.removedNodes.length) {
+                    scheduleTranslate('mutation:childList:removed');
+                    break;
+                }
             } else if (m.type === 'characterData') {
                 scheduleTranslate('mutation:char');
                 break;
+            } else if (m.type === 'attributes') {
+                // GitHub 会通过切换类名/属性重绘部分节点
+                if (m.attributeName === 'class' || m.attributeName === 'aria-label' || m.attributeName === 'data-view-component') {
+                    scheduleTranslate('mutation:attr');
+                    break;
+                }
             }
         }
     });
@@ -279,7 +324,8 @@
         observer.observe(document.documentElement, {
             subtree: true,
             childList: true,
-            characterData: true
+            characterData: true,
+            attributes: true
         });
     }
 
