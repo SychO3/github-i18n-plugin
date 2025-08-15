@@ -1,11 +1,10 @@
 {
   "routes": [
+    { "type": "prefix", "pattern": "https://github.com/", "key": "dashboard" },
     { "type": "regex", "pattern": "^https://github.com/dashboard(?:/.*)?$", "key": "dashboard" },
     { "type": "regex", "pattern": "^https://github.com/issues(?:/.*)?$", "key": "issues_global" },
     { "type": "regex", "pattern": "^https://github.com/pulls(?:/.*)?$", "key": "pulls_global" },
-    { "type": "prefix", "pattern": "https://github.com/", "key": "dashboard" },
-    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+$", "key": "repo_home" },
-    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/discussions(?:/.*)?$", "key": "repo_discussions" },
+    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+", "key": "repo" },
     { "type": "prefix", "pattern": "https://github.com/settings/profile", "key": "settings_profile" }
   ],
   "global": {
@@ -108,7 +107,7 @@
     "Repositories being starred by people": "人们正在标星的仓库"
  
   },
-  "repo_home": {
+  "repo": {
     "About": "简介",
     "Readme": "自述文件",
     "Participating and @mentions": "参与和 @提及",
@@ -130,34 +129,10 @@
     "Sponsor this project": "赞助此项目",
     "No packages published": "没有发布的软件包"
   },
-  "repo_discussions": {
-    "discussions": "讨论",
-    "new discussion": "发起讨论",
-    "categories": "分类"
-  },
   "settings_profile": {
     "settings": "设置",
     "profile": "个人资料",
     "username": "用户名"
-  },
-  "repo": {
-    "about": "简介",
-    "readme": "自述文件",
-    "go to file": "转到文件",
-    "add file": "添加文件",
-    "use this template": "使用此模板",
-    "clone": "克隆",
-    "contributors": "贡献者"
-  },
-  "issues_list": {
-    "filters": "筛选",
-    "sort": "排序",
-    "new": "新建",
-    "author": "作者",
-    "assignee": "负责人",
-    "label": "标签",
-    "milestone": "里程碑",
-    "projects": "项目"
   },
   "issues_global": {
     "Assigned to me": "指派给我的",
@@ -219,63 +194,6 @@
     "Filter by organization or owner": "按组织或所有者过滤",
     "Filter organizations": "过滤组织",
     "No results matched your search.": "没有结果匹配您的搜索。"
-  },
-  "issue_detail": {
-    "add your comment": "添加您的评论",
-    "reply": "回复",
-    "quote reply": "引用回复",
-    "copy link": "复制链接",
-    "lock conversation": "锁定讨论",
-    "unlock conversation": "解锁讨论"
-  },
-  "pulls_list": {
-    "new pull request": "新建拉取请求",
-    "checks": "检查"
-  },
-  "pr_detail": {
-    "conversation": "讨论",
-    "conversations": "讨论",
-    "files changed": "文件变更",
-    "commits": "提交",
-    "review changes": "审查变更",
-    "approve": "批准",
-    "request changes": "请求更改",
-    "merge pull request": "合并拉取请求",
-    "rebase and merge": "变基并合并",
-    "squash and merge": "压缩提交并合并"
-  },
-  "file_view": {
-    "path": "路径",
-    "copy path": "复制路径",
-    "permalink": "永久链接",
-    "line": "行",
-    "jump to line": "跳至行"
-  },
-  "commits_list": {
-    "commits": "提交",
-    "browse files": "浏览文件"
-  },
-  "commit_detail": {
-    "parent": "上一提交",
-    "browse files": "浏览文件",
-    "showing": "显示",
-    "additions": "新增",
-    "deletions": "删除"
-  },
-  "search": {
-    "all github": "全部 GitHub",
-    "repositories": "仓库",
-    "users": "用户",
-    "code": "代码",
-    "issues": "问题",
-    "pull requests": "拉取请求",
-    "packages": "软件包"
-  },
-  "notifications": {
-    "notifications": "通知",
-    "unread": "未读",
-    "read": "已读",
-    "mark as read": "标记为已读"
   }
 }
 
