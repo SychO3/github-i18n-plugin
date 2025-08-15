@@ -30,11 +30,12 @@
     "unwatch": "取消关注",
     "star": "标星",
     "unstar": "取消标星",
-    "fork": "复刻",
+    "fork": "派生",
     "edit": "编辑",
     "delete": "删除",
     "save": "保存",
     "cancel": "取消",
+    "OK": "确定",
     "preview": "预览",
     "submit": "提交",
     "open": "打开",
@@ -63,14 +64,7 @@
     "Most commented": "最多评论",
     "Least commented": "最少评论",
     "Recently updated": "最近更新",
-    "Least recently updated": "更新最早",
-    "Best match": "最佳匹配",
-    "Most reactions": "最多反应",
-    "patterns": [
-      { "regex": "^(\\d+)\\s+results$", "replace": "$1 条结果" },
-      { "regex": "^(\\d+)\\s+Open$", "replace": "$1 打开" },
-      { "regex": "^(\\d+)\\s+Closed$", "replace": "$1 已关闭" }
-    ]
+    "Least recently updated": "更新最早"
   },
   "dashboard": {
     "Dashboard": "仪表盘",
@@ -82,10 +76,10 @@
     "Feed": "动态",
     "Filter": "筛选",
     "Join discussion": "参与讨论",
-    "Recommended for you": "为你推荐",
+    "Recommended for you": "为您推荐",
     "released": "发布于",
     "Events": "事件",
-    "Activity you want to see on your feed": "你想在动态中看到的活动",
+    "Activity you want to see on your feed": "您想在动态中看到的活动",
     "Announcements": "公告",
     "Special discussion posts from repositories": "来自仓库的特别讨论帖子",
 
@@ -143,7 +137,9 @@
     "sort": "排序",
     "state": "状态",
     "archived": "已归档",
-
+    "patterns": [
+      { "regex": "^(\\d+)\\s+results$", "replace": "$1 条结果" }
+    ],
     "updated-desc": "最新更新",
     "updated-asc": "最旧更新",
     "Updated": "更新",
@@ -151,6 +147,7 @@
     "Created on": "创建时间",
     "Last updated": "最后更新",
     "Total comments": "总评论数",
+    "Best match": "最佳匹配",
     "Reactions": "反应",
     "Total reactions": "总反应数",
     "Order": "排序",
@@ -158,7 +155,18 @@
     "Newest": "最新",
     "author": "作者",
     "No results": "没有结果",
-    "Try adjusting your search filters.": "尝试调整你的搜索过滤器。"
+    "Try adjusting your search filters.": "尝试调整您的搜索过滤器。",
+    "You have unsaved changes": "您有未保存的更改",
+    "Are you sure you want to discard them?": "您确定要放弃这些更改吗？",
+    "Icon": "图标",
+    "Title": "标题",
+    "Description": "描述",
+    "Add a description": "添加描述",
+    "Query": "查询",
+    "Search Issues": "搜索问题",
+    "Save view": "保存视图",
+    "Build powerful views to keep track of work": "构建强大的视图以跟踪工作",
+    "Create your own views to quickly find and access your work.": "创建自己的视图以快速查找和访问您的工作。"
   },
   "pulls_global": {
     "Created": "已创建",
@@ -173,12 +181,11 @@
     "Public repositories only": "仅公共仓库",
     "Organization": "组织",
     "Filter by organization or owner": "按组织或所有者过滤",
-    "Filter organizations": "过滤组织",
-    "No results matched your search.": "没有结果匹配你的搜索。",
-    "You could search all of GitHub or try an advanced search.": "你可以搜索整个 GitHub 或尝试高级搜索。"
+    "Filter organizations": "过滤组织"
+
   },
   "issue_detail": {
-    "add your comment": "添加你的评论",
+    "add your comment": "添加您的评论",
     "reply": "回复",
     "quote reply": "引用回复",
     "copy link": "复制链接",
