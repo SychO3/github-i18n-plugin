@@ -165,7 +165,6 @@
   },
   "repo": {
     "About": "简介",
-    "Readme": "自述文件",
     "Participating and @mentions": "参与和 @提及",
     "Only receive notifications from this repository when participating or @mentioned.": "仅在参与或被 @提及时接收来自此仓库的通知。",
     "All Activity": "所有活动",
@@ -228,7 +227,7 @@
         },
         {
             "regex": "Codespace usage for this repository is paid for by (.+)\\.",
-            "replace": "此仓库的代码空间使用费用由 $1 支付。"
+            "replace": "此仓库的代码空间使用费用者是"
         }
     ],
     "stars": "星标",
@@ -245,6 +244,10 @@
     "On current branch": "在当前分支上",
     "No changes": "没有更改",
     "Active": "活跃",
+    "Used by": "被使用",
+    "MIT license": "MIT 许可证",
+    "default": "默认",
+    "Cite this repository": "引用此仓库",
     "Rename": "重命名",
     "Export changes to a branch": "导出更改到分支",
     "Change machine type": "更改机器类型",
