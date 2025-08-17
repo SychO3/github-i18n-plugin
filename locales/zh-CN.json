@@ -2,6 +2,7 @@
   "routes": [
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/issues(?:/.*)?(?:[?#].*)?$", "key": "repo_issues" },
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/projects(?:/.*)?(?:[?#].*)?$", "key": "repo_projects" },
+    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/fork(?:/.*)?(?:[?#].*)?$", "key": "repo_fork" },
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+(?:/)?(?:[?#].*)?$", "key": "repo" },
     { "type": "regex", "pattern": "^https://github.com/dashboard(?:/.*)?$", "key": "dashboard" },
     { "type": "regex", "pattern": "^https://github.com/issues(?:/.*)?$", "key": "issues_global" },
@@ -279,6 +280,9 @@
         ]
       }
     }
+  },
+  "repo_fork": {
+    "Create a new fork": "创建新复刻"
   },
   "settings_profile": {
     "settings": "设置",
