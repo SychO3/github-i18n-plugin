@@ -227,7 +227,7 @@
         },
         {
             "regex": "Codespace usage for this repository is paid for by (.+)\\.",
-            "replace": "此仓库的代码空间使用费用者是"
+            "replace": "此仓库的代码空间使用费用来自"
         }
     ],
     "stars": "星标",
