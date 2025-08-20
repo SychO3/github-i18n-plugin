@@ -5,7 +5,10 @@
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/projects(?:/.*)?(?:[?#].*)?$", "key": "repo_projects" },
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/tags(?:/.*)?(?:[?#].*)?$", "key": "repo_tags" },
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/fork(?:/.*)?(?:[?#].*)?$", "key": "repo_fork" },
-    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+(?:/)?(?:[?#].*)?$", "key": "repo" },
+    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/wiki(?:/.*)?(?:[?#].*)?$", "key": "repo_wiki" },
+    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/discussions(?:/.*)?(?:[?#].*)?$", "key": "repo_discussions" },
+    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/security(?:/.*)?(?:[?#].*)?$", "key": "repo_security" },
+    { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+(?:/)?(?:[?#].*)?", "key": "repo" },
     { "type": "regex", "pattern": "^https://github.com/dashboard(?:/.*)?$", "key": "dashboard" },
     { "type": "regex", "pattern": "^https://github.com/issues(?:/.*)?$", "key": "issues_global" },
     { "type": "regex", "pattern": "^https://github.com/pulls(?:/.*)?$", "key": "pulls_global" },
@@ -169,6 +172,7 @@
   },
   "repo": {
     "About": "简介",
+    "Deployments": "部署",
     "Participating and @mentions": "参与和 @提及",
     "Only receive notifications from this repository when participating or @mentioned.": "仅在参与或被 @提及时接收来自此仓库的通知。",
     "All Activity": "所有活动",
@@ -303,6 +307,42 @@
     "Downloads": "下载",
     "Notes": "备注"
   },
+  "repo_issues": {
+    "No projects were found": "没有找到项目",
+    "Please try a different search query.": "请尝试其他搜索查询。"
+  },
+  "repo_discussions": {
+    "Categories": "类别",
+    "View all discussions": "查看所有讨论",
+    "Most helpful": "最有帮助",
+    "Community guidelines": "社区指南",
+    "Latest activity": "最新活动",
+    "Date created": "创建日期",
+    "Top: Past day": "热门：过去一天",
+    "Top: Past week": "热门：过去一周",
+    "Top: Past month": "热门：过去一个月",
+    "Top: Past year": "热门：过去一年",
+    "Top: All": "热门：全部",
+    "New discussion": "新讨论",
+    "Locked": "已锁定",
+    "Unlocked": "已解锁",
+    "Answered": "已回答",
+    "Unanswered": "未回答",
+    "All": "全部",
+    "Filter: Open": "过滤：打开"
+
+  },
+  "repo_wiki": {
+    "Sponsor": "赞助",
+    "Pages": "页面",
+    "Clone this wiki locally": "在本地克隆此维基"
+  },
+  "repo_security": {
+    "Suggest a security policy": "建议安全策略",
+    "This project has not set up a SECURITY.md file yet.": "此项目尚未设置 SECURITY.md 文件。",
+    "Suggest a policy": "建议策略",
+    "There aren’t any published security advisories": "没有发布的安全策略"
+  },
   "settings_profile": {
     "settings": "设置",
     "profile": "个人资料",
@@ -324,7 +364,6 @@
     "updated-desc": "最新更新",
     "updated-asc": "最旧更新",
     "Updated": "更新",
-    "Sort by": "排序方式",
 
     "Try adjusting your search filters.": "尝试调整您的搜索过滤器。",
     "You have unsaved changes": "您有未保存的更改",
