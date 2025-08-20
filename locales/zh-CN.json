@@ -185,11 +185,26 @@
     "Create a new fork": "创建新复刻",
     "Branches": "分支",
     "Contributing": "贡献",
+    "View options": "视图选项",
+    "Wrap lines": "换行",
+    "Center content": "内容居中",
+    "Open symbols on click": "点击时跳转到符号",
     "Activity": "活动",
+    "Delete file": "删除文件",
+    "Show code folding buttons": "显示代码折叠按钮",
     "No releases published": "没有发布的版本",
     "Create a new release": "创建新版本",
+    "Ask about this file": "询问关于此文件的问题",
     "Add a README": "添加 README",
     "More workflows": "更多 workflows",
+    "Edit in place": "就地编辑",
+    "Raw file content": "原始文件内容",
+    "Download": "下载",
+    "Jump to line": "跳转到行",
+    "Copy path": "复制路径",
+    "Copy permalink": "复制永久链接",
+    "Open with...": "打开方式...",
+    "GitHub Desktop": "GitHub 桌面版",
     "Dismiss suggestions": "忽略建议",
     "Configure": "配置",
     "Help people interested in this repository understand your project by adding a README.": "通过添加 README 帮助对这个仓库感兴趣的人了解您的项目。",
@@ -288,7 +303,19 @@
     }
   },
   "repo_fork": {
-    "Create a new fork": "创建新复刻"
+    "Create a new fork": "创建新复刻",
+    "A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project. [a0]": {
+        "html": "复刻是仓库的副本。复刻仓库允许您自由地尝试更改，而不会影响原始项目。 [A0]",
+        "anchors": [
+          "查看现有复刻"
+        ]
+    },
+    "Required fields are marked with an asterisk (*).": "必填字段以星号 (*) 标记。",
+    "By default, forks are named the same as their upstream repository. You can customize the name to distinguish it further.": "默认情况下，复刻的名称与其上游仓库相同。您可以自定义名称以进一步区分。",
+    "Description": "描述",
+    "(optional)": "(可选)",
+    "You are creating a fork in your personal account.": "您正在您的个人账户中创建一个复刻。",
+    "Create fork": "创建复刻"
   },
   "repo_releases": {
     "Choose a tag to compare": "选择一个标签进行比较",
