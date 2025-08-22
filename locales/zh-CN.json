@@ -523,6 +523,7 @@
     "Licenses explain how others can use your code.": "许可证解释了其他人如何使用您的代码。",
     "Initialize this repository with:": "使用以下内容初始化此仓库：",
     "You are creating a public repository in your personal account.": "正在您的个人账户中创建一个公共仓库。",
+    "You are creating a private repository in your personal account.": "正在您的个人账户中创建一个私有仓库。",
     "Start your repository with a template repository's contents.": "使用模板仓库的内容开始您的仓库。",
     "A repository contains all project files, including the revision history.": "仓库包含所有项目文件，包括修订历史记录。",
     "Already have a project repository elsewhere?": "已经在其他地方有一个项目仓库？",
@@ -542,7 +543,17 @@
     "This is where you can write a long description for your project.": "这是您可以为项目编写长描述的地方。",
     "Choose which files not to track from a list of templates.": "从模板列表中选择不跟踪的文件。",
     "A license tells others what they can and can't do with your code.": "许可证告诉其他人他们可以和不可以对您的代码做什么。",
-    "Create repository": "创建仓库"
+    "Create repository": "创建仓库",
+    "Import repository": "导入仓库",
+    "Import your project to GitHub": "将您的项目导入到 GitHub",
+    "Import all the files, including revision history, from another version control system.": "从另一个版本控制系统导入所有文件，包括修订历史记录。",
+    "Begin import": "开始导入",
+    "Your source repository details": "您的源仓库详情",
+    "The URL for your source repository": "您的源仓库的 URL",
+    "Please enter your credentials if required for cloning your remote repository.": "如果克隆远程仓库需要，请输入您的凭据。",
+    "Your username for your source repository": "您的源仓库用户名",
+    "Your access token or password for your source repository": "您的源仓库的访问令牌或密码",
+    "Your new repository details": "您的新仓库详情"
   }
 }
 
