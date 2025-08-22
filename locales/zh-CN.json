@@ -153,16 +153,7 @@
       "html": "您可以在 [A0] 中搜索或尝试 [A1]。",
       "anchors": ["整个 GitHub", "高级搜索"]
     }
-  }
   },
-  "dashboard": {
-    "Dashboard": "仪表盘",
-    "Top repositories": "热门仓库",
-    "New": "新建",
-    "Find a repository…": "查找仓库…",
-    "Create new…": "新建…",
-    "Show more": "显示更多",
-    "Feed": "动态",
     "Chat with Copilot": "与 Copilot 聊天",
     "Open agents panel": "打开代理面板",
     "Jump to": "跳转到",
@@ -186,10 +177,26 @@
     "Try Enterprise": "试用企业版",
     "Your enterprises": "企业",
     "Your sponsors": "赞助商",
-    "You have unread notifications": "您有未读通知",
+    "You have unread notifications": "未读通知",
     "Give feedback": "提供反馈",
     "Join discussion": "参与讨论",
     "Your issues": "问题",
+    "Import repository": "导入仓库",
+    "New agent task": "新建代理任务",
+    "New codespace": "新建代码空间",
+    "New gist": "新建 Gist",
+    "New organization": "新建组织",
+    "New project": "新建项目"
+  },
+  "dashboard": {
+    "Dashboard": "仪表盘",
+    "Top repositories": "热门仓库",
+    "New": "新建",
+    "Find a repository…": "查找仓库…",
+    "Create new…": "新建…",
+    "Show more": "显示更多",
+    "Feed": "动态",
+
     "Your pull requests": "拉取请求",
     "Recommended for you": "为您推荐",
     "released": "发布于",
