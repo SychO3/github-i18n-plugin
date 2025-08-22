@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub 中文翻译增强
 // @namespace    https://github.com/SychO3/github-i18n-plugin
-// @version      1.0.12
+// @version      1.0.13
 // @description  将 GitHub 页面翻译为中文。采用字典驱动，按页面细分，不改变页面功能；自动处理 PJAX/动态内容。
 // @author       SychO
 // @match        https://github.com/*
@@ -298,7 +298,7 @@
         'script', 'style', 'noscript',
         'svg', 'math',
         // Markdown/代码内容区域
-        '.markdown-body', '.blob-code', '.diff-code', '.js-blob-code-container'
+        '.markdown-body', '.blob-code', '.diff-code', '.js-blob-code-container', '.react-code-lines'
     ].join(',');
 
     function isSkippable(node) {
