@@ -10,7 +10,7 @@
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+/security(?:/.*)?(?:[?#].*)?$", "key": "repo_security" },
     { "type": "regex", "pattern": "^https://github.com/[^/]+/[^/]+(?:/)?(?:[?#].*)?", "key": "repo" },
     { "type": "regex", "pattern": "^https://github.com/dashboard(?:/.*)?$", "key": "dashboard" },
-    { "type": "regex", "pattern": "^https://github.com/issues(?:/.*)?$", "key": "issues_global" },
+    { "type": "regex", "pattern": "^https://github.com/issues(?:/.*)?", "key": "issues_global" },
     { "type": "regex", "pattern": "^https://github.com/new(?:/.*)?", "key": "new_global" },
 
     { "type": "regex", "pattern": "^https://github.com/pulls(?:/.*)?$", "key": "pulls_global" },
@@ -186,7 +186,9 @@
     "New codespace": "新建代码空间",
     "New gist": "新建 Gist",
     "New organization": "新建组织",
-    "New project": "新建项目"
+    "New project": "新建项目",
+    "Your pull requests": "拉取请求",
+    "Start a new Copilot thread": "开始新的 Copilot 线程"
   },
   "dashboard": {
     "Dashboard": "仪表盘",
@@ -194,10 +196,7 @@
     "New": "新建",
     "Find a repository…": "查找仓库…",
     "Create new…": "新建…",
-    "Show more": "显示更多",
     "Feed": "动态",
-
-    "Your pull requests": "拉取请求",
     "Recommended for you": "为您推荐",
     "released": "发布于",
     "Events": "事件",
