@@ -12,7 +12,7 @@
     { "type": "regex", "pattern": "^https://github.com/dashboard(?:/.*)?$", "key": "dashboard" },
     { "type": "regex", "pattern": "^https://github.com/issues(?:/.*)?$", "key": "issues_global" },
     { "type": "regex", "pattern": "^https://github.com/pulls(?:/.*)?$", "key": "pulls_global" },
-    { "type": "regex", "pattern": "^https://github.com/codespaces(?:/.*)?$", "key": "codespaces_global" },
+    { "type": "regex", "pattern": "^https://github.com/codespaces(?:/.*)?", "key": "codespaces_global" },
     { "type": "prefix", "pattern": "https://github.com/settings/profile", "key": "settings_profile" },
     { "type": "regex", "pattern": "^https://github.com(?:/)?(?:[?#].*)?$", "key": "dashboard" }
   ],
@@ -457,7 +457,10 @@
     "Open in Browser": "在浏览器中打开",
     "Open in Visual Studio Code": "在 Visual Studio Code 中打开",
     "Open in JupyterLab": "在 JupyterLab 中打开",
-    "Show more actions for codespace": "显示代码空间的更多操作"
+    "Show more actions for codespace": "显示代码空间的更多操作",
+    "[object Object]": "模版",
+    "Choose a template": "选择一个模板",
+    "Start a codespace from a template and get to developing with the power of a virtual machine in the cloud.": "从模板开始一个代码空间，利用云中的虚拟机的强大功能进行开发。"
   }
 }
 
