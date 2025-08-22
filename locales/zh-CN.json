@@ -526,8 +526,23 @@
     "Start your repository with a template repository's contents.": "使用模板仓库的内容开始您的仓库。",
     "A repository contains all project files, including the revision history.": "仓库包含所有项目文件，包括修订历史记录。",
     "Already have a project repository elsewhere?": "已经在其他地方有一个项目仓库？",
-    "Try the new experience": "尝试新版本",
-    "Repository template": "仓库模板"
+    "Repository template": "仓库模板",
+    "Have a project elsewhere?": "有其他地方的项目？",
+    "Choose a .gitignore template": "选择一个 .gitignore 模板",
+    "Search templates": "搜索模板",
+    "No .gitignore": "无 .gitignore",
+    "No license": "无许可证",
+    "Choose a license": "选择一个许可证",
+    "Search licenses": "搜索许可证",
+    "Import a repository": "导入仓库",
+    "\uD83C\uDF89 Try the new experience": "\uD83C\uDF89 尝试新版本",
+    "Great repository names are short and memorable. Need inspiration? How about ": "一个简短且易记的好仓库名称怎么样？需要灵感吗？",
+    "(optional)": "(可选)",
+    "Add a README file": "添加 README 文件",
+    "This is where you can write a long description for your project.": "这是您可以为项目编写长描述的地方。",
+    "Choose which files not to track from a list of templates.": "从模板列表中选择不跟踪的文件。",
+    "A license tells others what they can and can't do with your code.": "许可证告诉其他人他们可以和不可以对您的代码做什么。",
+    "Create repository": "创建仓库"
   }
 }
 
